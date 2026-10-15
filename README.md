@@ -2,7 +2,7 @@
 
 A two-player LAN campaign mod for the original **Alien Shooter 2**. It uses the game's native DirectPlay networking and original interface, with campaign scripts adapted for two independent heroes.
 
-**Current release: 0.5.0-preview.** Download the installer or portable ZIP from [Releases](https://github.com/slopmod/AlienShooter2CoopMod/releases). Players do not need Python.
+**Current release: 0.5.0-preview.** Download the portable ZIP from [Releases](https://github.com/slopmod/AlienShooter2CoopMod/releases). Players do not need Python or an installer.
 
 ## Requirements
 
@@ -20,8 +20,8 @@ The supported `AlienShooter.exe` has file version **2.5.0.1**, size **2,244,608 
 
 ## Install and play
 
-1. Install the latest release into a **separate writable folder**, accepting the default location if desired. Choose English (default) or Russian. Alternatively, extract the entire portable ZIP.
-2. Open `AS2CoopCampaign.exe`, select the original game's folder containing `AlienShooter.exe`, then press **PLAY**. First launch prepares a separate game copy; the original installation is preserved.
+1. Extract the entire `AS2CoopCampaign` folder from the portable ZIP into a **separate writable location**. Keep `_internal` beside the launcher; do not run it directly from the archive.
+2. Open `AS2CoopCampaign.exe`, choose English (default) or Russian, select the original game's folder containing `AlienShooter.exe`, then press **PLAY**. First launch prepares a separate game copy; the original installation is preserved.
 3. Both players open **Co-op campaign** in the game's main menu. The host selects **New game → Host game**; the partner uses **Join game**, searches the LAN and joins. Enter the host's local IP if discovery fails.
 4. Each player creates a character and presses **Start**. The campaign begins when both confirm. Duplicate portraits, colours and abilities are allowed.
 
@@ -37,7 +37,7 @@ Full instructions: [English](INSTALL_EN.txt) · [Русский](INSTALL_RU.txt)
 - Cooperative script handling for objectives, interactions, portals, vehicles and mission transitions.
 - Mission-boundary autosaves, host save selection, automatic save transfer and both characters restored on load.
 - Ally revival: stand beside a fallen partner for **5 seconds**; moving away resets the timer. After both die, the host can right-click to retry the last campaign save.
-- English/Russian mod text and installer, with fixed Russian-source dialogue timings.
+- English/Russian mod text, launcher and instructions, with fixed Russian-source dialogue timings.
 - In-game display settings, a windowed 800×600 recovery option and optional two-window/infinite-health modes for local checks.
 
 This is a preview. Full manual coverage of every campaign route is incomplete. Saves restart at mission boundaries; progress within an unfinished mission is not saved. Inventory stack splitting, ground drops, implant purchases, repairs, buyback and some personal-panel tabs are not connected. Back up `saves/campaign` before updating. Original single-player saves are not compatible.
