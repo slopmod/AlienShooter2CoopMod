@@ -1,0 +1,28 @@
+# Generated builds and installed dependencies.
+/build/
+/dist/
+/tools/vendor/
+/tools/packaging/
+/tools/packaging-inno/
+/.venv/
+__pycache__/
+*.py[cod]
+*.spec
+
+# Local game copies, private paths, saves and launch diagnostics.
+/runtime/
+/saves/
+/campaign-content/
+/campaign-installation.json
+/campaign-language.txt
+/campaign-release.json
+/native-*.json
+*.log
+*.tmp
+
+# Editor and OS files.
+/.idea/
+/.vscode/
+Thumbs.db
+Desktop.ini
+.DS_Store

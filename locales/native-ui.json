@@ -1,0 +1,2353 @@
+{
+  "schema": 1,
+  "scope": "Mod-authored native UI only; original game assets and item titles are preserved.",
+  "encoding": "cp1251",
+  "source_spelling": "LGC quoted literal contents; line breaks use backslash-n.",
+  "menu_controls": {
+    "maps/old_campaign_browser.men": [
+      "SearchButtonText",
+      "JoinButtonText",
+      "StartButtonText",
+      "ExitButtonText",
+      "NewTabText",
+      "SavesTabText",
+      "JoinTabText",
+      "CampaignHeading"
+    ]
+  },
+  "original_literals": {
+    "maps/const.lgc": [
+      "нужная пустышка"
+    ],
+    "maps/util_create_scores_html.lgc": [
+      "          <div align=\\\"left\\\">ВРЕМЯ:</div>",
+      "          <div align=\\\"left\\\">ИМЯ:</div>",
+      "          <div align=\\\"left\\\">МОНСТРЫ:</div>",
+      "          <div align=\\\"left\\\">СЧЕТ:</div>",
+      "        кнопку \\\"Отправить\\\".</td>",
+      "        на сервер. Если Ваш счет больше чем у других игроков на сервере",
+      "        то Ваше имя добавится в список! <font color=\\\"#FF6666\\\"><b>Будьте ",
+      "        уверены что Ваш компьютер подключен к интернету</b></font> и нажмите ",
+      "      <td align=\\\"center\\\" class=\\\"Text02\\\">Сейчас Вы можете отправить лучший результат Alien Shooter 2"
+    ]
+  },
+  "messages": [
+    {
+      "source": "Сетевая (фикс.)",
+      "ru": "Сетевая (фикс.)",
+      "en": "Co-op (fixed)",
+      "files": [
+        "maps/common_menu.lgc"
+      ]
+    },
+    {
+      "source": "Полный экран",
+      "ru": "Полный экран",
+      "en": "Full screen",
+      "files": [
+        "maps/common_menu.lgc"
+      ]
+    },
+    {
+      "source": "После перезапуска: окно",
+      "ru": "После перезапуска: окно",
+      "en": "After restart: windowed",
+      "files": [
+        "maps/common_menu.lgc"
+      ]
+    },
+    {
+      "source": "После перезапуска: полный экран",
+      "ru": "После перезапуска: полный экран",
+      "en": "After restart: full screen",
+      "files": [
+        "maps/common_menu.lgc"
+      ]
+    },
+    {
+      "source": "Задание выполнено. Идите к выходу вместе.",
+      "ru": "Задание выполнено. Идите к выходу вместе.",
+      "en": "Objective complete. Go to the exit together.",
+      "files": [
+        "maps/level_06.lgc"
+      ]
+    },
+    {
+      "source": "Подойдите к тележке вместе с напарником.",
+      "ru": "Подойдите к тележке вместе с напарником.",
+      "en": "Approach the cart together.",
+      "files": [
+        "maps/level_12.lgc"
+      ]
+    },
+    {
+      "source": "Сетевая кампания",
+      "ru": "Сетевая кампания",
+      "en": "Co-op campaign",
+      "files": [
+        "maps/mainmenu.lgc",
+        "maps/old_campaign_lobby.lgc"
+      ]
+    },
+    {
+      "source": "Автосохранение кампании...",
+      "ru": "Автосохранение кампании...",
+      "en": "Autosaving campaign...",
+      "files": [
+        "maps/old_campaign_checkpoint.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось сохранить кампанию. Проверьте журнал лаунчера. Переход остановлен.",
+      "ru": "Не удалось сохранить кампанию. Проверьте журнал лаунчера. Переход остановлен.",
+      "en": "Could not save the campaign. Check the launcher log. Mission transition stopped.",
+      "files": [
+        "maps/old_campaign_checkpoint.lgc"
+      ]
+    },
+    {
+      "source": "Кампания завершена",
+      "ru": "Кампания завершена",
+      "en": "Campaign complete",
+      "files": [
+        "maps/old_campaign_ending.lgc"
+      ]
+    },
+    {
+      "source": "Esc — главное меню",
+      "ru": "Esc — главное меню",
+      "en": "Esc - main menu",
+      "files": [
+        "maps/old_campaign_ending.lgc"
+      ]
+    },
+    {
+      "source": "Миссия завершена",
+      "ru": "Миссия завершена",
+      "en": "Mission complete",
+      "files": [
+        "maps/old_campaign_finish.lgc",
+        "maps/old_campaign_finish_level02.lgc",
+        "maps/old_campaign_finish_level03.lgc",
+        "maps/old_campaign_finish_level04.lgc",
+        "maps/old_campaign_finish_level05.lgc",
+        "maps/old_campaign_finish_level06.lgc",
+        "maps/old_campaign_finish_level07.lgc",
+        "maps/old_campaign_finish_level08.lgc",
+        "maps/old_campaign_finish_level09.lgc",
+        "maps/old_campaign_finish_level10.lgc",
+        "maps/old_campaign_finish_level11.lgc",
+        "maps/old_campaign_finish_level12.lgc",
+        "maps/old_campaign_finish_level13.lgc",
+        "maps/old_campaign_finish_level14.lgc",
+        "maps/old_campaign_finish_level72.lgc",
+        "maps/old_campaign_finish_level73.lgc"
+      ]
+    },
+    {
+      "source": "Переход ко второй миссии...",
+      "ru": "Переход ко второй миссии...",
+      "en": "Loading mission 2...",
+      "files": [
+        "maps/old_campaign_finish.lgc"
+      ]
+    },
+    {
+      "source": "Совместный прогресс пока не сохраняется.",
+      "ru": "Совместный прогресс пока не сохраняется.",
+      "en": "Co-op progress is not saved yet.",
+      "files": [
+        "maps/old_campaign_finish.lgc",
+        "maps/old_campaign_finish_level02.lgc",
+        "maps/old_campaign_finish_level03.lgc",
+        "maps/old_campaign_finish_level04.lgc",
+        "maps/old_campaign_finish_level05.lgc",
+        "maps/old_campaign_finish_level06.lgc",
+        "maps/old_campaign_finish_level07.lgc",
+        "maps/old_campaign_finish_level08.lgc",
+        "maps/old_campaign_finish_level09.lgc",
+        "maps/old_campaign_finish_level10.lgc",
+        "maps/old_campaign_finish_level11.lgc",
+        "maps/old_campaign_finish_level12.lgc",
+        "maps/old_campaign_finish_level13.lgc",
+        "maps/old_campaign_finish_level14.lgc",
+        "maps/old_campaign_finish_level72.lgc",
+        "maps/old_campaign_finish_level73.lgc"
+      ]
+    },
+    {
+      "source": "Для перехода соберитесь вдвоём внутри лифта.",
+      "ru": "Для перехода соберитесь вдвоём внутри лифта.",
+      "en": "Both players must gather inside the elevator.",
+      "files": [
+        "maps/old_campaign_finish.lgc"
+      ]
+    },
+    {
+      "source": "Переход невозможен: один из героев погиб. Возрождение пока недоступно.",
+      "ru": "Переход невозможен: один из героев погиб. Возрождение пока недоступно.",
+      "en": "Cannot continue: a hero has died. Reviving is not available yet.",
+      "files": [
+        "maps/old_campaign_finish.lgc",
+        "maps/old_campaign_finish_level02.lgc",
+        "maps/old_campaign_finish_level03.lgc",
+        "maps/old_campaign_finish_level04.lgc",
+        "maps/old_campaign_finish_level05.lgc",
+        "maps/old_campaign_finish_level06.lgc",
+        "maps/old_campaign_finish_level07.lgc",
+        "maps/old_campaign_finish_level08.lgc",
+        "maps/old_campaign_finish_level09.lgc",
+        "maps/old_campaign_finish_level10.lgc",
+        "maps/old_campaign_finish_level11.lgc",
+        "maps/old_campaign_finish_level12.lgc",
+        "maps/old_campaign_finish_level13.lgc",
+        "maps/old_campaign_finish_level14.lgc",
+        "maps/old_campaign_finish_level72.lgc",
+        "maps/old_campaign_finish_level73.lgc"
+      ]
+    },
+    {
+      "source": "Переход остановлен: состояние группы изменилось.",
+      "ru": "Переход остановлен: состояние группы изменилось.",
+      "en": "Transition stopped: the party's state has changed.",
+      "files": [
+        "maps/old_campaign_finish.lgc",
+        "maps/old_campaign_finish_level02.lgc",
+        "maps/old_campaign_finish_level03.lgc",
+        "maps/old_campaign_finish_level04.lgc",
+        "maps/old_campaign_finish_level05.lgc",
+        "maps/old_campaign_finish_level06.lgc",
+        "maps/old_campaign_finish_level07.lgc",
+        "maps/old_campaign_finish_level08.lgc",
+        "maps/old_campaign_finish_level09.lgc",
+        "maps/old_campaign_finish_level10.lgc",
+        "maps/old_campaign_finish_level11.lgc",
+        "maps/old_campaign_finish_level12.lgc",
+        "maps/old_campaign_finish_level13.lgc",
+        "maps/old_campaign_finish_level14.lgc",
+        "maps/old_campaign_finish_level72.lgc",
+        "maps/old_campaign_finish_level73.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 3...",
+      "ru": "Переход к миссии 3...",
+      "en": "Loading mission 3...",
+      "files": [
+        "maps/old_campaign_finish_level02.lgc"
+      ]
+    },
+    {
+      "source": "Для перехода соберитесь вдвоём у одного выхода.",
+      "ru": "Для перехода соберитесь вдвоём у одного выхода.",
+      "en": "Both players must gather at the same exit.",
+      "files": [
+        "maps/old_campaign_finish_level02.lgc",
+        "maps/old_campaign_finish_level03.lgc",
+        "maps/old_campaign_finish_level04.lgc",
+        "maps/old_campaign_finish_level05.lgc",
+        "maps/old_campaign_finish_level06.lgc",
+        "maps/old_campaign_finish_level07.lgc",
+        "maps/old_campaign_finish_level08.lgc",
+        "maps/old_campaign_finish_level09.lgc",
+        "maps/old_campaign_finish_level10.lgc",
+        "maps/old_campaign_finish_level11.lgc",
+        "maps/old_campaign_finish_level12.lgc",
+        "maps/old_campaign_finish_level13.lgc",
+        "maps/old_campaign_finish_level14.lgc",
+        "maps/old_campaign_finish_level72.lgc",
+        "maps/old_campaign_finish_level73.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 4...",
+      "ru": "Переход к миссии 4...",
+      "en": "Loading mission 4...",
+      "files": [
+        "maps/old_campaign_finish_level03.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 5...",
+      "ru": "Переход к миссии 5...",
+      "en": "Loading mission 5...",
+      "files": [
+        "maps/old_campaign_finish_level04.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 6...",
+      "ru": "Переход к миссии 6...",
+      "en": "Loading mission 6...",
+      "files": [
+        "maps/old_campaign_finish_level05.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 7...",
+      "ru": "Переход к миссии 7...",
+      "en": "Loading mission 7...",
+      "files": [
+        "maps/old_campaign_finish_level06.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 7.2...",
+      "ru": "Переход к миссии 7.2...",
+      "en": "Loading mission 7.2...",
+      "files": [
+        "maps/old_campaign_finish_level07.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 9...",
+      "ru": "Переход к миссии 9...",
+      "en": "Loading mission 9...",
+      "files": [
+        "maps/old_campaign_finish_level08.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 10...",
+      "ru": "Переход к миссии 10...",
+      "en": "Loading mission 10...",
+      "files": [
+        "maps/old_campaign_finish_level09.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 11...",
+      "ru": "Переход к миссии 11...",
+      "en": "Loading mission 11...",
+      "files": [
+        "maps/old_campaign_finish_level10.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 12...",
+      "ru": "Переход к миссии 12...",
+      "en": "Loading mission 12...",
+      "files": [
+        "maps/old_campaign_finish_level11.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 13...",
+      "ru": "Переход к миссии 13...",
+      "en": "Loading mission 13...",
+      "files": [
+        "maps/old_campaign_finish_level12.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 14...",
+      "ru": "Переход к миссии 14...",
+      "en": "Loading mission 14...",
+      "files": [
+        "maps/old_campaign_finish_level13.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 15...",
+      "ru": "Переход к миссии 15...",
+      "en": "Loading mission 15...",
+      "files": [
+        "maps/old_campaign_finish_level14.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 7.3...",
+      "ru": "Переход к миссии 7.3...",
+      "en": "Loading mission 7.3...",
+      "files": [
+        "maps/old_campaign_finish_level72.lgc"
+      ]
+    },
+    {
+      "source": "Переход к миссии 8...",
+      "ru": "Переход к миссии 8...",
+      "en": "Loading mission 8...",
+      "files": [
+        "maps/old_campaign_finish_level73.lgc"
+      ]
+    },
+    {
+      "source": "Начать",
+      "ru": "Начать",
+      "en": "Start",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ожидание напарника",
+      "ru": "Ожидание напарника",
+      "en": "Waiting for partner",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Назад",
+      "ru": "Назад",
+      "en": "Back",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Далее",
+      "ru": "Далее",
+      "en": "Next",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Подключение прервано",
+      "ru": "Подключение прервано",
+      "en": "Connection lost",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ожидание",
+      "ru": "Ожидание",
+      "en": "Waiting",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Новая кампания",
+      "ru": "Новая кампания",
+      "en": "New campaign",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ХОСТ",
+      "ru": "ХОСТ",
+      "en": "HOST",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "НАПАРНИК",
+      "ru": "НАПАРНИК",
+      "en": "PARTNER",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": " (ВЫ)",
+      "ru": " (ВЫ)",
+      "en": " (YOU)",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Персонаж готов",
+      "ru": "Персонаж готов",
+      "en": "Character ready",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Создаёт персонажа",
+      "ru": "Создаёт персонажа",
+      "en": "Creating character",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ожидание подключения",
+      "ru": "Ожидание подключения",
+      "en": "Waiting for connection",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ваш персонаж готов.\\n\\nНапарник завершает\\nсоздание своего героя.\\n\\nКампания начнётся\\nавтоматически.",
+      "ru": "Ваш персонаж готов.\\n\\nНапарник завершает\\nсоздание своего героя.\\n\\nКампания начнётся\\nавтоматически.",
+      "en": "Your character is ready.\\n\\nYour partner is creating\\ntheir character.\\n\\nThe campaign will start\\nautomatically.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ваш персонаж готов.\\n\\nНапарник может найти\\nигру в локальной сети\\nи создать героя.\\n\\nКампания начнётся,\\nкогда оба будут готовы.",
+      "ru": "Ваш персонаж готов.\\n\\nНапарник может найти\\nигру в локальной сети\\nи создать героя.\\n\\nКампания начнётся,\\nкогда оба будут готовы.",
+      "en": "Your character is ready.\\n\\nYour partner can find\\nyour LAN game and\\ncreate their character.\\n\\nThe campaign starts\\nwhen both are ready.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Оба персонажа готовы.\\n\\nПодготовка кампании...\\n\\nМиссия 1 начнётся\\nу обоих игроков.",
+      "ru": "Оба персонажа готовы.\\n\\nПодготовка кампании...\\n\\nМиссия 1 начнётся\\nу обоих игроков.",
+      "en": "Both characters ready.\\n\\nPreparing campaign...\\n\\nMission 1 will start\\nfor both players.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Тест: бесконечное здоровье",
+      "ru": "Тест: бесконечное здоровье",
+      "en": "Test: infinite health",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Продолжение",
+      "ru": "Продолжение",
+      "en": "Continue campaign",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Миссия ",
+      "ru": "Миссия ",
+      "en": "Mission ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Герой из сохранения",
+      "ru": "Герой из сохранения",
+      "en": "Saved character",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ожидание напарника.\\n\\nОба героя и инвентарь\\nбудут восстановлены.\\n\\nСоздавать персонажей\\nзаново не нужно.",
+      "ru": "Ожидание напарника.\\n\\nОба героя и инвентарь\\nбудут восстановлены.\\n\\nСоздавать персонажей\\nзаново не нужно.",
+      "en": "Waiting for partner.\\n\\nBoth characters and\\ninventories will load.\\n\\nNo new characters\\nneed to be created.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Загрузка сохранения...\\n\\nВосстановление героев\\nи прогресса кампании.",
+      "ru": "Загрузка сохранения...\\n\\nВосстановление героев\\nи прогресса кампании.",
+      "en": "Loading saved game...\\n\\nRestoring characters\\nand campaign progress.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\n\\nПередано: ",
+      "ru": "\\n\\nПередано: ",
+      "en": "\\n\\nTransferred: ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Сохранение загружено.\\n\\nЗапуск миссии ",
+      "ru": "Сохранение загружено.\\n\\nЗапуск миссии ",
+      "en": "Saved game loaded.\\n\\nStarting mission ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "...\\n\\nПодождите немного.",
+      "ru": "...\\n\\nПодождите немного.",
+      "en": "...\\n\\nPlease wait.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "СЕТЕВАЯ КАМПАНИЯ",
+      "ru": "СЕТЕВАЯ КАМПАНИЯ [RU]",
+      "en": "CO-OP CAMPAIGN [EN]",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Главное меню",
+      "ru": "Главное меню",
+      "en": "Main menu",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Игроки кампании",
+      "ru": "Игроки кампании",
+      "en": "Campaign players",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Создать игру",
+      "ru": "Создать игру",
+      "en": "Host game",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Подключиться",
+      "ru": "Подключиться",
+      "en": "Join",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Отмена",
+      "ru": "Отмена",
+      "en": "Cancel",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось открыть список.\\nПерезапустите лаунчер.",
+      "ru": "Не удалось открыть список.\\nПерезапустите лаунчер.",
+      "en": "Could not load the list.\\nRestart the launcher.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Сохранение недоступно.\\nОбновите список\\nи выберите другое.",
+      "ru": "Сохранение недоступно.\\nОбновите список\\nи выберите другое.",
+      "en": "Saved game unavailable.\\nRefresh the list\\nand choose another.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Выбор изменился.\\nПовторите создание игры.",
+      "ru": "Выбор изменился.\\nПовторите создание игры.",
+      "en": "Selection changed.\\nTry hosting again.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Лаунчер не отвечает.\\nЗапустите игру через\\nлаунчер мода.",
+      "ru": "Лаунчер не отвечает.\\nЗапустите игру через\\nлаунчер мода.",
+      "en": "Launcher not responding.\\nStart the game using\\nthe mod launcher.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Новая игра",
+      "ru": "Новая игра",
+      "en": "New game",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Сохранения",
+      "ru": "Сохранения",
+      "en": "Saved games",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Подключение",
+      "ru": "Подключение",
+      "en": "Join game",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Герой ",
+      "ru": "Герой ",
+      "en": "Character ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": ", опыт ",
+      "ru": ", опыт ",
+      "en": ", XP ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Войти",
+      "ru": "Войти",
+      "en": "Join",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Обновить",
+      "ru": "Обновить",
+      "en": "Refresh",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc",
+        "maps/old_campaign_browser.men"
+      ]
+    },
+    {
+      "source": "Кампания для двух игроков",
+      "ru": "Кампания для двух игроков",
+      "en": "Two-player campaign",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "С НАЧАЛА ИСТОРИИ",
+      "ru": "С НАЧАЛА ИСТОРИИ",
+      "en": "FROM THE BEGINNING",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Первая миссия кампании",
+      "ru": "Первая миссия кампании",
+      "en": "Start at the first mission",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ВАШИ ПЕРСОНАЖИ",
+      "ru": "ВАШИ ПЕРСОНАЖИ",
+      "en": "YOUR CHARACTERS",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Свой герой, навыки и инвентарь",
+      "ru": "Свой герой, навыки и инвентарь",
+      "en": "Personal character, skills and items",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ОБЩЕЕ ПРОХОЖДЕНИЕ",
+      "ru": "ОБЩЕЕ ПРОХОЖДЕНИЕ",
+      "en": "PLAY TOGETHER",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Задания и деньги для всей команды",
+      "ru": "Задания и деньги для всей команды",
+      "en": "Shared objectives and money",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "АВТОСОХРАНЕНИЕ",
+      "ru": "АВТОСОХРАНЕНИЕ",
+      "en": "AUTOSAVE",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Прогресс сохраняется между миссиями",
+      "ru": "Прогресс сохраняется между миссиями",
+      "en": "Progress saved between missions",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Создайте игру и\\nпригласите напарника\\nиз локальной сети.\\n\\nКаждый выберет героя\\nи распределит очки\\nхарактеристик.\\n\\nМиссия начнётся,\\nкогда оба подтвердят\\nсвоих персонажей.",
+      "ru": "Создайте игру и\\nпригласите напарника\\nиз локальной сети.\\n\\nКаждый выберет героя\\nи распределит очки\\nхарактеристик.\\n\\nМиссия начнётся,\\nкогда оба подтвердят\\nсвоих персонажей.",
+      "en": "Host a game and invite\\na partner on your LAN.\\n\\nEach player chooses\\na character and\\nassigns stat points.\\n\\nThe mission starts\\nwhen both confirm\\ntheir characters.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Сохранение",
+      "ru": "Сохранение",
+      "en": "Saved game",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Сохранённые кампании",
+      "ru": "Сохранённые кампании",
+      "en": "Saved campaigns",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Продолжить",
+      "ru": "Продолжить",
+      "en": "Continue",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Нет сохранений",
+      "ru": "Нет сохранений",
+      "en": "No saved games",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Сохранений пока нет.\\n\\nНачните новую игру.\\nПрогресс сохранится\\nавтоматически при\\nпереходе между миссиями.",
+      "ru": "Сохранений пока нет.\\n\\nНачните новую игру.\\nПрогресс сохранится\\nавтоматически при\\nпереходе между миссиями.",
+      "en": "No saved games yet.\\n\\nStart a new campaign.\\nProgress is saved\\nautomatically between\\nmissions.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Здесь появятся ваши сохранения",
+      "ru": "Здесь появятся ваши сохранения",
+      "en": "Your saved games will appear here",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Список недоступен.\\n\\nНажмите Обновить.\\nИгра должна быть\\nзапущена через\\nлаунчер мода.",
+      "ru": "Список недоступен.\\n\\nНажмите Обновить.\\nИгра должна быть\\nзапущена через\\nлаунчер мода.",
+      "en": "List unavailable.\\n\\nClick Refresh.\\nStart the game using\\nthe mod launcher.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\n\\nХозяин игры\\n",
+      "ru": "\\n\\nХозяин игры\\n",
+      "en": "\\n\\nHost\\n",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\nНапарник\\n",
+      "ru": "\\nНапарник\\n",
+      "en": "\\nPartner\\n",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\n\\nГерои и инвентарь\\nбудут восстановлены.\\nВыбор персонажей\\nне потребуется.",
+      "ru": "\\n\\nГерои и инвентарь\\nбудут восстановлены.\\nВыбор персонажей\\nне потребуется.",
+      "en": "\\n\\nCharacters and items\\nwill be restored.\\nNo character creation\\nis needed.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Недоступно файлов: ",
+      "ru": "Недоступно файлов: ",
+      "en": "Unavailable files: ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Игры в локальной сети",
+      "ru": "Игры в локальной сети",
+      "en": "LAN games",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Создать",
+      "ru": "Создать",
+      "en": "Host",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Поиск кампаний...",
+      "ru": "Поиск кампаний...",
+      "en": "Searching for campaigns...",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Нет доступных игр",
+      "ru": "Нет доступных игр",
+      "en": "No games available",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Адрес хоста (пусто — вся сеть)",
+      "ru": "Адрес хоста (пусто — вся сеть)",
+      "en": "Host IP (blank = entire LAN)",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Enter — поиск; Esc — отмена",
+      "ru": "Enter — поиск; Esc — отмена",
+      "en": "Enter - search; Esc - cancel",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Подготовка кампании...\\n\\nПодождите немного.",
+      "ru": "Подготовка кампании...\\n\\nПодождите немного.",
+      "en": "Preparing campaign...\\n\\nPlease wait.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Выберите игру\\nв списке слева.",
+      "ru": "Выберите игру\\nв списке слева.",
+      "en": "Choose a game\\nfrom the list on the left.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Игроки в кампании\\n\\n",
+      "ru": "Игроки в кампании\\n\\n",
+      "en": "Campaign players\\n\\n",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\n\\nНажмите Подключиться,\\nчтобы присоединиться.",
+      "ru": "\\n\\nНажмите Подключиться,\\nчтобы присоединиться.",
+      "en": "\\n\\nClick Join to connect.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Поиск по локальной сети.\\n\\nПодождите несколько\\nсекунд.",
+      "ru": "Поиск по локальной сети.\\n\\nПодождите несколько\\nсекунд.",
+      "en": "Searching your LAN.\\n\\nPlease wait a few\\nseconds.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ИГРЫ НЕ НАЙДЕНЫ\\n\\nНапарник должен\\nсоздать кампанию.\\nЗатем повторите поиск.\\n\\nМожно указать адрес IP\\nего компьютера.",
+      "ru": "ИГРЫ НЕ НАЙДЕНЫ\\n\\nНапарник должен\\nсоздать кампанию.\\nЗатем повторите поиск.\\n\\nМожно указать адрес IP\\nего компьютера.",
+      "en": "NO GAMES FOUND\\n\\nAsk your partner to\\nhost a campaign,\\nthen search again.\\n\\nYou can also enter\\ntheir IP address.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Найдено игр: ",
+      "ru": "Найдено игр: ",
+      "en": "Games found: ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\n\\nВыберите кампанию\\nв списке слева.",
+      "ru": "\\n\\nВыберите кампанию\\nв списке слева.",
+      "en": "\\n\\nChoose a campaign\\nfrom the list on the left.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Поиск",
+      "ru": "Поиск",
+      "en": "Search",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Поиск...",
+      "ru": "Поиск...",
+      "en": "Searching...",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Подключение...",
+      "ru": "Подключение...",
+      "en": "Connecting...",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": " (вы)",
+      "ru": " (вы)",
+      "en": " (you)",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Игроков: ",
+      "ru": "Игроков: ",
+      "en": "Players: ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ожидание напарника.\\n\\nВторой игрок выбирает\\nвашу кампанию в сети\\nи подключается.",
+      "ru": "Ожидание напарника.\\n\\nВторой игрок выбирает\\nвашу кампанию в сети\\nи подключается.",
+      "en": "Waiting for partner.\\n\\nYour partner can find\\nyour campaign in the\\nLAN list and join.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ПОДКЛЮЧЕНИЕ...\\n\\nПодождите немного.\\nОтмена — вернуться\\nк списку кампаний.",
+      "ru": "ПОДКЛЮЧЕНИЕ...\\n\\nПодождите немного.\\nОтмена — вернуться\\nк списку кампаний.",
+      "en": "CONNECTING...\\n\\nPlease wait.\\nCancel returns to\\nthe campaign list.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ПОДГОТОВКА ИГРЫ...\\n\\nПодождите немного.",
+      "ru": "ПОДГОТОВКА ИГРЫ...\\n\\nПодождите немного.",
+      "en": "PREPARING GAME...\\n\\nPlease wait.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "ЗАПУСК КАМПАНИИ...\\n\\nЗагрузка начнется\\nу обоих игроков.",
+      "ru": "ЗАПУСК КАМПАНИИ...\\n\\nЗагрузка начнется\\nу обоих игроков.",
+      "en": "STARTING CAMPAIGN...\\n\\nBoth players will\\nload the mission.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ошибка соединения",
+      "ru": "Ошибка соединения",
+      "en": "Connection error",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось подключиться.\\nНажмите Отмена\\nи повторите поиск.",
+      "ru": "Не удалось подключиться.\\nНажмите Отмена\\nи повторите поиск.",
+      "en": "Could not connect.\\nClick Cancel\\nand search again.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось создать игру.\\nНажмите Отмена\\nи попробуйте снова.",
+      "ru": "Не удалось создать игру.\\nНажмите Отмена\\nи попробуйте снова.",
+      "en": "Could not host a game.\\nClick Cancel\\nand try again.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Состав сессии изменился.\\nКампания рассчитана\\nровно на двух игроков.\\nНажмите Отмена.",
+      "ru": "Состав сессии изменился.\\nКампания рассчитана\\nровно на двух игроков.\\nНажмите Отмена.",
+      "en": "Session players changed.\\nThe campaign requires\\nexactly two players.\\nClick Cancel.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ошибка согласования\\nкампании.\\nКод: ",
+      "ru": "Несовместимые настройки.\\nНужны одна версия\\nмода и один язык.\\nКод: ",
+      "en": "Campaign mismatch.\\nUse the same mod version\\nand language.\\nCode: ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\nНажмите Отмена.",
+      "ru": "\\nНажмите Отмена.",
+      "en": "\\nClick Cancel.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Ошибка загрузки\\nсохранения.\\nКод: ",
+      "ru": "Ошибка загрузки\\nсохранения.\\nКод: ",
+      "en": "Saved game load failed.\\nCode: ",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "\\nПроверьте журнал лаунчера.",
+      "ru": "\\nПроверьте журнал лаунчера.",
+      "en": "\\nCheck the launcher log.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Соединение разорвано.\\nНажмите Отмена\\nдля нового подключения.",
+      "ru": "Соединение разорвано.\\nНажмите Отмена\\nдля нового подключения.",
+      "en": "Connection lost.\\nClick Cancel\\nto connect again.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Хост не ответил вовремя.\\nНажмите Отмена\\nи повторите подключение.",
+      "ru": "Хост не ответил вовремя.\\nНажмите Отмена\\nи повторите подключение.",
+      "en": "Host timed out.\\nClick Cancel\\nand connect again.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось согласовать\\nперсонажей.\\nНажмите Отмена\\nи создайте игру снова.",
+      "ru": "Не удалось согласовать\\nперсонажей.\\nНажмите Отмена\\nи создайте игру снова.",
+      "en": "Character setup failed.\\nClick Cancel\\nand host the game again.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Кампания по LAN",
+      "ru": "Кампания по LAN",
+      "en": "LAN campaign",
+      "files": [
+        "maps/old_campaign_lobby.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось поставить вторую машину. Доступна исходная машина.",
+      "ru": "Не удалось поставить вторую машину. Доступна исходная машина.",
+      "en": "Could not place the second vehicle. The original vehicle is available.",
+      "files": [
+        "maps/old_campaign_party_vehicle.lgc"
+      ]
+    },
+    {
+      "source": "Загрузка сохранения",
+      "ru": "Загрузка сохранения",
+      "en": "Loading saved game",
+      "files": [
+        "maps/old_campaign_retry.lgc"
+      ]
+    },
+    {
+      "source": "Оба героя погибли.\\nОжидание: хост может загрузить последнее сохранение.",
+      "ru": "Оба героя погибли.\\nОжидание: хост может загрузить последнее сохранение.",
+      "en": "Both heroes have died.\\nWaiting for the host to load the last saved game.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Оба героя погибли.\\nЗагрузка последнего сохранения...",
+      "ru": "Оба героя погибли.\\nЗагрузка последнего сохранения...",
+      "en": "Both heroes have died.\\nLoading the last saved game...",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось подготовить сохранение.\\nПКМ — повторить. Esc — главное меню.",
+      "ru": "Не удалось подготовить сохранение.\\nПКМ — повторить. Esc — главное меню.",
+      "en": "Could not prepare the saved game.\\nRight-click to retry. Esc - main menu.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Оба героя погибли.\\nХост: нажмите ПКМ, чтобы загрузить последнее сохранение.\\nEsc — главное меню.",
+      "ru": "Оба героя погибли.\\nХост: нажмите ПКМ, чтобы загрузить последнее сохранение.\\nEsc — главное меню.",
+      "en": "Both heroes have died.\\nHost: right-click to load the last saved game.\\nEsc - main menu.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Подойдите к погибшему союзнику и оставайтесь рядом 5 секунд.",
+      "ru": "Подойдите к погибшему союзнику и оставайтесь рядом 5 секунд.",
+      "en": "Stay near your fallen ally for 5 seconds to revive them.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Вы погибли. Союзник может воскресить вас, постояв рядом 5 секунд.",
+      "ru": "Вы погибли. Союзник может воскресить вас, постояв рядом 5 секунд.",
+      "en": "You have died. Your ally can revive you by staying nearby for 5 seconds.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Воскрешение: ",
+      "ru": "Воскрешение: ",
+      "en": "Reviving: ",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": " сек. Не отходите от союзника.",
+      "ru": " сек. Не отходите от союзника.",
+      "en": " sec. Stay near your ally.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Воскрешение готово. Освободите место рядом с союзником.",
+      "ru": "Воскрешение готово. Освободите место рядом с союзником.",
+      "en": "Revive ready. Make room near your ally.",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "+ ВОСКРЕСИТЬ",
+      "ru": "+ ВОСКРЕСИТЬ",
+      "en": "+ REVIVE",
+      "files": [
+        "maps/old_campaign_revival.lgc"
+      ]
+    },
+    {
+      "source": "Здоровье",
+      "ru": "Здоровье",
+      "en": "Health",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Сила",
+      "ru": "Сила",
+      "en": "Strength",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Скорость",
+      "ru": "Скорость",
+      "en": "Speed",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Точность",
+      "ru": "Точность",
+      "en": "Accuracy",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Интеллект",
+      "ru": "Интеллект",
+      "en": "Intelligence",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Броня",
+      "ru": "Броня",
+      "en": "Armor",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Пистолеты",
+      "ru": "Пистолеты",
+      "en": "Pistols",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Дробовики",
+      "ru": "Дробовики",
+      "en": "Shotguns",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Пулеметы",
+      "ru": "Пулеметы",
+      "en": "Machine guns",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Ракетницы",
+      "ru": "Ракетницы",
+      "en": "Rocket launchers",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Энерг. оружие",
+      "ru": "Энерг. оружие",
+      "en": "Energy weapons",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "ИНВЕНТАРЬ",
+      "ru": "ИНВЕНТАРЬ",
+      "en": "INVENTORY",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Стрелки — выбор, PgUp/PgDn — страницы. I или Esc — закрыть.",
+      "ru": "Стрелки — выбор, PgUp/PgDn — страницы. I или Esc — закрыть.",
+      "en": "Arrows - select; PgUp/PgDn - pages; I or Esc - close.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Игра продолжается. Аптечки: U; развитие героя: C после закрытия.",
+      "ru": "Игра продолжается. Аптечки: U; развитие героя: C после закрытия.",
+      "en": "The game keeps running. U - medkit; close and press C to upgrade.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "ВАШИ ВЕЩИ",
+      "ru": "ВАШИ ВЕЩИ",
+      "en": "YOUR ITEMS",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "ВЫБРАННАЯ ВЕЩЬ",
+      "ru": "ВЫБРАННАЯ ВЕЩЬ",
+      "en": "SELECTED ITEM",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "< Назад       Далее >",
+      "ru": "< Назад       Далее >",
+      "en": "< Previous       Next >",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Экипировать [E]",
+      "ru": "Экипировать [E]",
+      "en": "Equip [E]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Снять [R]",
+      "ru": "Снять [R]",
+      "en": "Unequip [R]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Использовать [U]",
+      "ru": "Использовать [U]",
+      "en": "Use [U]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Закрыть [I]",
+      "ru": "Закрыть [I]",
+      "en": "Close [I]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "РАЗВИТИЕ",
+      "ru": "РАЗВИТИЕ",
+      "en": "DEVELOPMENT",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Стрелки — выбор, Enter — одно повышение. C или Esc — закрыть.",
+      "ru": "Стрелки — выбор, Enter — одно повышение. C или Esc — закрыть.",
+      "en": "Arrows - select; Enter - upgrade once; C or Esc - close.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Очки тратятся сразу. Закрытие не отменяет повышение.",
+      "ru": "Очки тратятся сразу. Закрытие не отменяет повышение.",
+      "en": "Points are spent immediately. Closing does not undo an upgrade.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "ХАРАКТЕРИСТИКА",
+      "ru": "ХАРАКТЕРИСТИКА",
+      "en": "STAT",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "БАЗА / ИТОГ",
+      "ru": "БАЗА / ИТОГ",
+      "en": "BASE / TOTAL",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Повысить [Enter]",
+      "ru": "Повысить [Enter]",
+      "en": "Upgrade [Enter]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Закрыть [C]",
+      "ru": "Закрыть [C]",
+      "en": "Close [C]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "МАГАЗИН",
+      "ru": "МАГАЗИН",
+      "en": "SHOP",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Tab — список, PgUp/PgDn — страницы, Enter — сделка, Esc — закрыть.",
+      "ru": "Tab — список, PgUp/PgDn — страницы, Enter — сделка, Esc — закрыть.",
+      "en": "Tab - list; PgUp/PgDn - pages; Enter - trade; Esc - close.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Импланты, ремонт и выкуп проданных вещей пока недоступны.",
+      "ru": "Импланты, ремонт и выкуп проданных вещей пока недоступны.",
+      "en": "Implants, repairs and buyback are not available yet.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "ТОВАРЫ",
+      "ru": "ТОВАРЫ",
+      "en": "GOODS",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Купить",
+      "ru": "Купить",
+      "en": "Buy",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Продать",
+      "ru": "Продать",
+      "en": "Sell",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Продать всё",
+      "ru": "Продать всё",
+      "en": "Sell all",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Закрыть",
+      "ru": "Закрыть",
+      "en": "Close",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Повышение недоступно: нет очков или достигнут предел.",
+      "ru": "Повышение недоступно: нет очков или достигнут предел.",
+      "en": "Cannot upgrade: no points or the limit has been reached.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Аптечка не использована: здоровье полное или лечение недоступно.",
+      "ru": "Аптечка не использована: здоровье полное или лечение недоступно.",
+      "en": "Medkit not used: health is full or healing is unavailable.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось экипировать: проверьте требования и свободное место.",
+      "ru": "Не удалось экипировать: проверьте требования и свободное место.",
+      "en": "Cannot equip: check requirements and available space.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось снять: проверьте свободное место в рюкзаке.",
+      "ru": "Не удалось снять: проверьте свободное место в рюкзаке.",
+      "en": "Cannot unequip: check backpack space.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Операция отклонена: проверьте деньги и место в рюкзаке.",
+      "ru": "Операция отклонена: проверьте деньги и место в рюкзаке.",
+      "en": "Action rejected: check money and backpack space.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Недоступно",
+      "ru": "Недоступно",
+      "en": "Unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Очки развития недоступны",
+      "ru": "Очки развития недоступны",
+      "en": "Stat points unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Свободные очки: ",
+      "ru": "Свободные очки: ",
+      "en": "Available points: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Повышение недоступно",
+      "ru": "Повышение недоступно",
+      "en": "Upgrade unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Прибавка: ",
+      "ru": "Прибавка: ",
+      "en": "Increase: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "   Стоимость: ",
+      "ru": "   Стоимость: ",
+      "en": "   Cost: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "   Предел: ",
+      "ru": "   Предел: ",
+      "en": "   Limit: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "   Недоступно",
+      "ru": "   Недоступно",
+      "en": "   Unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Выберите характеристику. Итог учитывает действующие бонусы.",
+      "ru": "Выберите характеристику. Итог учитывает действующие бонусы.",
+      "en": "Choose a stat. The total includes active bonuses.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Характеристика повышена.",
+      "ru": "Характеристика повышена.",
+      "en": "Stat increased.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Значение или очки изменились. Повторите запрос.",
+      "ru": "Значение или очки изменились. Повторите запрос.",
+      "en": "Stat or points changed. Try again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Повышение отклонено (",
+      "ru": "Повышение отклонено (",
+      "en": "Upgrade rejected (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Данные героя недоступны. Повторите позже.",
+      "ru": "Данные героя недоступны. Повторите позже.",
+      "en": "Character data unavailable. Try again later.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Ожидание подтверждения...",
+      "ru": "Ожидание подтверждения...",
+      "en": "Waiting for confirmation...",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Нет подтверждения сетевой операции.",
+      "ru": "Нет подтверждения сетевой операции.",
+      "en": "No confirmation for the network action.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "\\nЭкипировано",
+      "ru": "\\nЭкипировано",
+      "en": "\\nEquipped",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "\\nВ рюкзаке",
+      "ru": "\\nВ рюкзаке",
+      "en": "\\nIn backpack",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Экипировано",
+      "ru": "Экипировано",
+      "en": "Equipped",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "В рюкзаке",
+      "ru": "В рюкзаке",
+      "en": "In backpack",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Количество: ",
+      "ru": "Количество: ",
+      "en": "Quantity: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Экипировать: недоступно",
+      "ru": "Экипировать: недоступно",
+      "en": "Equip: unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Снять: недоступно",
+      "ru": "Снять: недоступно",
+      "en": "Unequip: unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Использовать: недоступно",
+      "ru": "Использовать: недоступно",
+      "en": "Use: unavailable",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Экипировать: E",
+      "ru": "Экипировать: E",
+      "en": "Equip: E",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Снять: R",
+      "ru": "Снять: R",
+      "en": "Unequip: R",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Использовать: U",
+      "ru": "Использовать: U",
+      "en": "Use: U",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Общая касса: ",
+      "ru": "Общая касса: ",
+      "en": "Shared money: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Выберите вещь и действие. Магазин доступен только у прилавка.",
+      "ru": "Выберите вещь и действие. Магазин доступен только у прилавка.",
+      "en": "Choose an item and action. The shop is available at the counter.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Готово.",
+      "ru": "Готово.",
+      "en": "Done.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Вещь изменилась. Выберите её снова.",
+      "ru": "Вещь изменилась. Выберите её снова.",
+      "en": "Item changed. Select it again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Для этой вещи действие пока недоступно.",
+      "ru": "Для этой вещи действие пока недоступно.",
+      "en": "This action is not available for this item.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Действие отклонено (",
+      "ru": "Действие отклонено (",
+      "en": "Action rejected (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Вещь больше недоступна. Выберите другую.",
+      "ru": "Вещь больше недоступна. Выберите другую.",
+      "en": "Item no longer available. Choose another.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "> ТОВАРЫ",
+      "ru": "> ТОВАРЫ",
+      "en": "> GOODS",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "> ВАШИ ВЕЩИ",
+      "ru": "> ВАШИ ВЕЩИ",
+      "en": "> YOUR ITEMS",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": " шт. / ",
+      "ru": " шт. / ",
+      "en": " units / ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": " $   В наличии: ",
+      "ru": " $   В наличии: ",
+      "en": " $   In stock: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": " [экипировано]",
+      "ru": " [экипировано]",
+      "en": " [equipped]",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "\\nПродать: ",
+      "ru": "\\nПродать: ",
+      "en": "\\nSell: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": " $ / всё: ",
+      "ru": " $ / всё: ",
+      "en": " $ / all: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "\\nНе продаётся",
+      "ru": "\\nНе продаётся",
+      "en": "\\nCannot sell",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Выберите товар или свою вещь.",
+      "ru": "Выберите товар или свою вещь.",
+      "en": "Choose a shop item or one of your items.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Подойдите к магазину живым героем.",
+      "ru": "Подойдите к магазину живым героем.",
+      "en": "Approach the shop with a living character.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Общая касса недоступна.",
+      "ru": "Общая касса недоступна.",
+      "en": "Shared money unavailable.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Цена или вещь изменились. Выберите её снова.",
+      "ru": "Цена или вещь изменились. Выберите её снова.",
+      "en": "Price or item changed. Select it again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Этот товар закончился.",
+      "ru": "Этот товар закончился.",
+      "en": "This item is out of stock.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Вещь больше недоступна. Обновите выбор.",
+      "ru": "Вещь больше недоступна. Обновите выбор.",
+      "en": "Item no longer available. Select it again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Эта операция для вещи пока недоступна.",
+      "ru": "Эта операция для вещи пока недоступна.",
+      "en": "This action is not available for the item.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Операция отклонена (",
+      "ru": "Операция отклонена (",
+      "en": "Action rejected (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "). Обновите выбор.",
+      "ru": "). Обновите выбор.",
+      "en": "). Select again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Перетаскивание — перенос. Двойной щелчок — надеть/снять. E / R / U. Esc — отмена/выход.",
+      "ru": "Перетаскивание — перенос. Двойной щелчок — надеть/снять. E / R / U. Esc — отмена/выход.",
+      "en": "Drag to move. Double-click to equip/unequip. E / R / U. Esc - cancel/close.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Игра продолжается. Повышение характеристики применяется сразу.",
+      "ru": "Игра продолжается. Повышение характеристики применяется сразу.",
+      "en": "The game keeps running. Stat upgrades take effect immediately.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Предмет изменился. Выберите его снова.",
+      "ru": "Предмет изменился. Выберите его снова.",
+      "en": "Item changed. Select it again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Это действие для выбранной вещи недоступно.",
+      "ru": "Это действие для выбранной вещи недоступно.",
+      "en": "This action is unavailable for the selected item.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Сюда перенести нельзя. Esc — отменить.",
+      "ru": "Сюда перенести нельзя. Esc — отменить.",
+      "en": "Cannot move here. Esc - cancel.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Отпустите кнопку для переноса. Esc — отменить.",
+      "ru": "Отпустите кнопку для переноса. Esc — отменить.",
+      "en": "Release to move. Esc - cancel.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Перенос отклонён: проверьте место и требования вещи.",
+      "ru": "Перенос отклонён: проверьте место и требования вещи.",
+      "en": "Move rejected: check space and item requirements.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "). Выберите вещь снова.",
+      "ru": "). Выберите вещь снова.",
+      "en": "). Select the item again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Ошибка открытия инвентаря (",
+      "ru": "Ошибка открытия инвентаря (",
+      "en": "Could not open inventory (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "). Закройте панель.",
+      "ru": "). Закройте панель.",
+      "en": "). Close the panel.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Перенос: купить / продать стопку / переместить. Enter — действие. Esc — отмена / выход.",
+      "ru": "Перенос: купить / продать стопку / переместить. Enter — действие. Esc — отмена / выход.",
+      "en": "Drag to buy, sell a stack or move. Enter - action. Esc - cancel/close.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Купить патроны",
+      "ru": "Купить патроны",
+      "en": "Buy ammo",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Деньги и запас магазина общие. Вещи остаются личными.",
+      "ru": "Деньги и запас магазина общие. Вещи остаются личными.",
+      "en": "Money and shop stock are shared. Your items remain personal.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "В этой категории пока нет товаров.",
+      "ru": "В этой категории пока нет товаров.",
+      "en": "No goods in this category yet.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": " — выбрано для продажи",
+      "ru": " — выбрано для продажи",
+      "en": " - selected for sale",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Состав инвентаря изменился. Выберите вещь снова.",
+      "ru": "Состав инвентаря изменился. Выберите вещь снова.",
+      "en": "Inventory changed. Select the item again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "  В наличии: ",
+      "ru": "  В наличии: ",
+      "en": "  In stock: ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Покупка имплантов пока недоступна.",
+      "ru": "Покупка имплантов пока недоступна.",
+      "en": "Buying implants is not available yet.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Операция выполнена.",
+      "ru": "Операция выполнена.",
+      "en": "Action completed.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Операция отклонена. Выберите вещь снова.",
+      "ru": "Операция отклонена. Выберите вещь снова.",
+      "en": "Action rejected. Select the item again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Перенос отклонён: проверьте место, требования и деньги.",
+      "ru": "Перенос отклонён: проверьте место, требования и деньги.",
+      "en": "Move rejected: check space, requirements and money.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Предмет или цена изменились. Выберите снова.",
+      "ru": "Предмет или цена изменились. Выберите снова.",
+      "en": "Item or price changed. Select again.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Отпустите кнопку для переноса.",
+      "ru": "Отпустите кнопку для переноса.",
+      "en": "Release to move.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Купить за ",
+      "ru": "Купить за ",
+      "en": "Buy for ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": " $ — отпустите кнопку.",
+      "ru": " $ — отпустите кнопку.",
+      "en": " $ - release to confirm.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Продать всю стопку за ",
+      "ru": "Продать всю стопку за ",
+      "en": "Sell entire stack for ",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Не удалось открыть магазин. Закройте панель.",
+      "ru": "Не удалось открыть магазин. Закройте панель.",
+      "en": "Could not open shop. Close the panel.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Ошибка сети (",
+      "ru": "Ошибка сети (",
+      "en": "Network error (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "). Esc — меню; перезапустите сессию.",
+      "ru": "). Esc — меню; перезапустите сессию.",
+      "en": "). Esc - menu; restart the session.",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Магазин недоступен: ошибка подготовки товаров (",
+      "ru": "Магазин недоступен: ошибка подготовки товаров (",
+      "en": "Shop unavailable: stock setup error (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Панель недоступна: герой ещё не готов (",
+      "ru": "Панель недоступна: герой ещё не готов (",
+      "en": "Panel unavailable: character not ready (",
+      "files": [
+        "maps/old_campaign_shop.lgc"
+      ]
+    },
+    {
+      "source": "Выход занят. Напарнику нужно отойти от точки прибытия.",
+      "ru": "Выход занят. Напарнику нужно отойти от точки прибытия.",
+      "en": "Exit blocked. Your partner must move away from the arrival point.",
+      "files": [
+        "maps/util_teleport.lgc"
+      ]
+    },
+    {
+      "source": "Несовместимые настройки.\\nОбоим игрокам нужна\\nодна версия мода.\\nНажмите Отмена.",
+      "ru": "Несовместимые настройки.\\nОбоим игрокам нужна\\nодна версия мода\\nи один язык.\\nНажмите Отмена.",
+      "en": "Settings mismatch.\\nBoth players need the\\nsame mod version\\nand language.\\nClick Cancel.",
+      "files": [
+        "maps/old_campaign_lobby.lgc",
+        "maps/old_campaign_retry.lgc"
+      ]
+    }
+  ]
+}

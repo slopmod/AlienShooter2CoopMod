@@ -1,0 +1,297 @@
+ALIEN SHOOTER 2 — COOPERATIVE CAMPAIGN
+Version 0.5.0-preview • Windows x64
+
+A two-player cooperative campaign over a local network, using the original
+OLD game's DirectPlay networking. Includes all 15 main missions, character
+creation for both players, personal inventories and progression, shared money,
+shops, autosaves and campaign loading, ally revival and retry after both die.
+Two additional Reloaded road missions and their required resources are included
+after mission 7. A separate Reloaded installation is not required.
+
+This is a preview release. Individual scenarios and transitions have been
+tested; a complete normal playthrough of every route still needs manual testing.
+
+WHAT IS INCLUDED
+
+The installer and standalone launcher include Python; players do not need
+to install it separately. Campaign adaptations and save support are included.
+The network menu uses the game's original panels, fonts and buttons for
+new games, saved games, joining, player status and save transfer progress.
+The HUD, inventory, character screen and shop use the original game screens.
+Item dragging is supported; shop item display, selection and refresh after
+buying ammunition have been fixed.
+
+MOD LANGUAGE
+
+The installer offers English by default; Russian is also available.
+The installer, guide and launcher follow the selected language. You can change
+it in the launcher's upper-right corner before starting the game. Captions and
+the help tab update immediately; the game folder and option selections remain.
+The selector is disabled while the game is running; close the game to switch.
+The portable ZIP defaults to English. Your selection is stored in
+campaign-language.txt next to the launcher. Both guides are always included.
+
+The translation covers text added by the mod: network menus, connection states,
+save loading, hints, revival and error messages. Original menus, item names,
+story text and audio come from the supported Russian game and remain Russian.
+This release does NOT support an English game EXE or translate the original
+game itself. Shared dialogue timings are fixed to the verified Russian build.
+
+Both players must use the same mod VERSION AND LANGUAGE. Select the same
+language in both launchers before connecting. Mixed-language sessions are not
+supported in this release. Changing the mod language does not delete saves.
+
+REQUIRED GAME VERSION
+
+EVERY PC needs the complete installed Russian original Alien Shooter 2 1.1
+(v1.1-rus) with the old DirectPlay networking. The verified installation is
+from the Gold edition. Other releases with the same name are not automatically
+compatible: the executable hash is the deciding check. Reloaded alone cannot
+serve as the base game. An English original/Vengeance executable has not yet
+been verified and is not accepted by this release.
+
+Supported AlienShooter.exe:
+  File version shown in Windows properties: 2.5.0.1
+  Size: 2,244,608 bytes
+  SHA-256:
+  5128048a4ac922266f4664c1c00e18cc924b1fd3aafd451081799c8c519e3808
+
+The launcher checks the EXE automatically. Preparation also verifies required
+source resources. The folder or store name does not establish compatibility.
+If validation fails, obtain a complete supported installation. Replacing only
+the EXE in Reloaded or another game build is not supported.
+
+The complete OLD game and a patched AlienShooter.exe are not included.
+Only the two additional Reloaded maps and resources needed for their port
+are bundled. The mod prepares separate game copies and preserves the original
+installation. Launch the original game separately for single-player.
+
+Windows 10 or 11 x64 is required; the game itself remains 32-bit. Use a writable
+folder with enough free disk space for a separate game copy. Two-window testing
+prepares two copies. Resources for the two bundled maps are prepared as well.
+
+INSTALLATION
+
+1. Close the game windows and any launcher from a previous mod version.
+2. Run AS2CoopCampaign-0.5.0-preview-setup.exe and select a language
+   (English is the default). The default mod folder is
+   %LOCALAPPDATA%\Programs\AS2CoopCampaign. You may choose another writable
+   folder. Do not select the original game's folder. Installation is per-user
+   and does not require administrator rights.
+3. Run the installed AS2CoopCampaign.exe.
+4. Under "Original OLD Alien Shooter 2 — base game", click "Browse…" and
+   select the complete OLD game's folder containing AlienShooter.exe.
+5. Click "Install / repair" or "PLAY". The first launch prepares a separate
+   game copy and may take a few minutes.
+6. Repeat on your partner's PC. Both players need the same mod version,
+   selected language and additional-map content.
+
+Alternatively, extract the entire AS2CoopCampaign folder from the portable ZIP
+into a writable location, such as D:\Games\AS2CoopCampaign, and follow steps
+3–6. Do not run the EXE inside the archive or separate it from _internal.
+The portable package does not require a separate Python installation either.
+
+If DirectPlay is disabled, open "Turn Windows features on or off" → "Legacy
+Components" → "DirectPlay". Enabling this Windows component may require
+administrator approval. The launcher does not enable it automatically.
+If Windows Firewall asks, allow the game on your private local network.
+You do not need to disable the firewall or expose the game to the Internet.
+
+ADDITIONAL RELOADED MAPS
+
+The installer and portable ZIP contain road maps 7.2 and 7.3 and their required
+dependencies. They are prepared with the mod; no separate Reloaded installation
+or path is needed. The complete OLD game is still required. Its engine, main
+databases and balance are used. The 36 bundled map/resource files are verified
+with SHA-256 during preparation.
+
+Campaign order: 1 → … → 7 → 7.2 → 7.3 → 8 → … → 15.
+This ports two maps to the old engine; it does not replace the game with Reloaded.
+Both players need the same mod version, language and map content.
+
+STARTING A NEW LAN CAMPAIGN
+
+1. Both players press "PLAY" in the launcher and open "Co-op campaign" in
+   the game's main menu.
+2. The host selects "New game" → "Host game".
+3. The other player opens "Join game", searches or refreshes the list, selects
+   the host's campaign and clicks "Join". An empty address field searches the
+   local network. If the
+   game is not found, enter the host PC's local IP address and search again.
+4. Each player chooses an ability, then selects a portrait, sex, colour and
+   starting attributes on the original character creation screen. Duplicate
+   heroes, colours and abilities are allowed.
+5. Each player presses "Start". A confirmed
+   character is locked and waits for the partner. Once both have confirmed,
+   the mission starts automatically; no additional Ready or Play click is
+   needed. Cancel disconnects and returns to the network menu.
+
+Money is shared. Items, equipment, character progression and combat experience
+are personal. Starting points spent on money by either player contribute to
+the shared balance. The standard starting wallet is not doubled.
+
+To test on one PC, enable "Two windows on this PC for cooperative testing".
+Host in the first window and join from the second. Enter 127.0.0.1 if needed;
+this address cannot be used to connect from another PC. Closing one game window
+in this mode closes the other as well.
+
+For testing, the host can enable "Test: infinite health for both players
+(host setting)". It is off by default and applies to a new campaign. When loading
+a save, the saved health mode is used. Monsters remain normal. This mode persists
+across mission transitions.
+
+ALLY REVIVAL AND RETRY
+
+If one hero dies, the living partner can stand near the body for 5 seconds.
+A countdown appears near the body. Leaving the area resets the timer; you can
+approach again. There is no overall retry limit or deadline before the current
+mission ends. The revived hero returns with full health and keeps equipment
+and progression. Obstacles or a different floor can prevent revival: approach
+the body directly on the same level.
+
+If both heroes die, the host is prompted to press the right mouse button.
+Release it and click again after the prompt appears. Both players load the last
+available save for the current campaign. The connection remains active and
+character creation is skipped. The mission restarts from the autosave;
+progress after it is lost. If no suitable save exists or loading fails,
+the message explains the problem.
+
+SAVING AND CONTINUING
+
+Autosaves are created when a new campaign begins and at mission boundaries,
+after rewards for the completed mission. Each is a separate
+saves/campaign/*.as2coop.json file inside the mod folder. Earlier entries remain
+available. Progress inside an unfinished mission is not saved: loading starts
+the saved mission again.
+
+To continue, the host opens "Co-op campaign" → "Saved games", chooses a mission
+and date, then clicks "Continue". The partner connects through "Join game" as usual.
+Character creation is skipped. Save transfer and map loading are automatic.
+
+Both heroes' attributes, experience, unspent points, items, item positions,
+equipment, shared money and quest data are restored. The host keeps the host
+hero; the joining player receives the guest hero. Saves use these two roles,
+not individual partner accounts.
+
+"Install / repair" does not delete saves. To back up or transfer progress,
+copy saves/campaign and place it at the same path next to AS2CoopCampaign.exe
+in the destination mod installation. Original single-player saves cannot be
+loaded from this menu. If an autosave cannot be written, the transition stops:
+check the launch log and free disk space, and keep your earlier saves.
+
+SETTINGS AND CONTROLS
+
+Change graphics, resolution, sound and keys in the original game settings.
+Mod settings are separate from the original game. Resolution applies when you
+press OK; fullscreen changes apply after restarting. Two-window mode uses windows.
+
+Default controls:
+  WASD or arrow keys: move.
+  Left mouse button: fire. Right mouse button: move to the cursor.
+  I / C: inventory and character screen.
+  1–5, Q/E or mouse wheel: select weapon.
+  R: reload. F: flashlight. Tab: show/hide HUD.
+  Esc: close a panel/menu or cancel dragging.
+  Inventory: double-click to equip/unequip; E to equip, R to unequip;
+  U to use a selected medkit. An attribute's "+" spends one upgrade point.
+
+The HUD shows health, armour, experience, weapons, ammunition and equipment.
+The shared balance appears in the inventory and shop. Spent upgrade points
+apply immediately and cannot currently be undone. Hover over an item for
+1.5 seconds to see its attributes and requirements. Personal panels do not
+pause the world.
+
+INVENTORY AND SHOP
+
+Drag items between inventory cells and compatible equipment slots. Green means
+a valid move; red means it is rejected. The item stays at its original position
+until network confirmation. Esc or releasing outside the panel cancels a drag.
+Occupied cells swap items when both fit. Matching stackable items combine;
+if the destination stack fills, the remainder stays at its original position.
+
+Your items are on the left of the shop, product categories on the right, and
+ammunition for the selected class in a separate bottom row. Select a product
+and use the original Buy / Buy ammo buttons. Select a personal item and use
+Sell / Sell all to sell it. Button labels show prices. Enter performs the action
+for the selected item; the mouse wheel, PgUp/PgDn, arrows and scrollbar browse
+the catalog. Money and shop stock are shared. Original shop captions remain
+in the base game's Russian language.
+
+Dragging a product into a free backpack position, compatible stack or free
+compatible equipment slot buys one portion. Dragging a personal item onto
+the product/ammo grid sells the ENTIRE stack. The price is visible before
+release. Buying directly onto occupied equipment is not supported: buy into
+the backpack first, then swap the equipment separately.
+
+Stack splitting, dropping items on the ground and the remaining personal-panel
+tabs are not connected yet. Implant purchases, repairs and buyback are unavailable.
+
+TROUBLESHOOTING
+
+Unsupported game version: select a complete OLD installation with the EXE hash
+listed above. Do not replace only the EXE in another game edition.
+
+Game not found: create a campaign on the host first and search again. Check
+that both players have the same mod version, language and map content,
+DirectPlay enabled, a shared LAN and private-network firewall permission.
+Enter the host's local IP manually if needed.
+
+Incompatible settings: close the game on both PCs, select the same mod language
+in both launchers and check the package version. Update both PCs and use
+"Install / repair" if necessary. Changing ports does not fix mismatched
+versions or languages.
+
+Display mode does not work: close the game, select "Reset display: 800×600
+window" and launch again. Sound, keys and characters are preserved. Then choose
+a suitable resolution in the game settings.
+
+Prepared-file error: close both game windows and click "Install / repair".
+The original installation remains intact. Each launch writes
+runtime/launch-<identifier>.log inside the mod folder. On failure, the launcher
+shows the relevant log path.
+
+UPDATING, MOVING AND UNINSTALLING
+
+Before updating, close the game and launcher and back up saves/campaign.
+Both PCs must use the same mod version and language. When installing into
+a new folder, transfer saves and select the base game again. Runtime files
+are recreated from the local installation.
+
+Give another PC the original installer or portable ZIP. Do not transfer prepared
+runtime copies or campaign-installation.json containing another PC's local paths.
+The destination PC needs its own complete supported game installation.
+
+Uninstall through Windows installed apps: "Alien Shooter 2 — Cooperative
+Campaign" or "Alien Shooter 2 — Совместная кампания", depending on the install
+language. The uninstaller removes shipped mod files. Player-created saves,
+game copies and settings remain in the mod folder. For complete removal, back up
+needed saves, then remove the remaining mod folder manually. A portable copy
+can be removed with its separate folder after closing the game and launcher.
+The original game keeps working. Separate mod settings in the Windows profile
+may remain after removal.
+
+PREVIEW LIMITATIONS
+
+Supports two players and the sequential campaign of 15 main missions plus
+bundled maps 7.2 and 7.3. Original story endings are shown to both players;
+Esc returns to the menu after the ending screen. Mission 11 has two separate
+robots. Mission 12's cart waits for both living heroes at boarding. Shops open
+for each player before missions 14 and 15.
+
+A full manual playthrough of every route has not been confirmed. Connections
+and gameplay have been tested with two processes on one PC and manually over
+a network. Revival and retry after both heroes die have been tested manually.
+The English mod translation still needs a complete in-game screen review.
+Compatibility with an English original installation is not confirmed.
+Leaving the game loses progress after the last autosave. Not every single-player
+interface feature has been ported to cooperative play.
+
+SOURCE AND NOTICES
+
+Source build instructions and a code overview are in the repository README.
+Players of the installer or portable ZIP do not need Python or build tools.
+
+Third-party software license terms are in the packaged LICENSES folder.
+These terms do not cover the original game or additional-map resources.
+The complete OLD game is not bundled; its files are prepared from the player's
+installation.

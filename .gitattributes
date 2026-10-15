@@ -1,0 +1,2 @@
+# Preserve exact source bytes: templates and canonical data participate in hashes.
+* -text

@@ -1,0 +1,133 @@
+// Passive map-qualified snapshots; the early-load fixture is diagnostic only.
+#ifndef OLD_CAMPAIGN_TRANSITION_H
+#define OLD_CAMPAIGN_TRANSITION_H 1
+static int OldTransitionFrame = 0;
+static int OldTransitionRequested = 0;
+
+OldTransitionValue(int file, string name, int value)
+{
+    FWrite(file, name + "=" + itoa(value));
+}
+
+OldTransitionObserve()
+{
+    OldTransitionFrame++;
+    int level = giCurLevCmpgnReal;
+    int force_sample = 0;
+#ifdef OLD_CAMPAIGN_TRANSITION
+    force_sample = OldFinishStage > 0;
+#endif
+    if(OldTransitionFrame > 20000 || !force_sample && OldTransitionFrame > 1 && OldTransitionFrame % 10)
+        return;
+    int file = FCreate("old-transition-level-" + itoa(level) + "-frame-"
+        + itoa(OldTransitionFrame) + ".txt");
+    if(!file) return;
+    FWrite(file, "AS2OLDTRANSITION1");
+    OldTransitionValue(file, "frame", OldTransitionFrame);
+    FWrite(file, "map=" + ToLower(GetMapName()));
+    OldTransitionValue(file, "time", GetTime());
+    OldTransitionValue(file, "level", level);
+    OldTransitionValue(file, "campaign_level", giCurLevCmpgn);
+    OldTransitionValue(file, "connected", NetProperty(NET_IS_CONNECT));
+    OldTransitionValue(file, "players", NetProperty(NET_NO_PLAYERS));
+    OldTransitionValue(file, "local_army", NetProperty(NET_N_LOCAL_PLAYER));
+    OldTransitionValue(file, "ready", OldCampaignReady);
+    OldTransitionValue(file, "init_status", OldCampaignStatus);
+    OldTransitionValue(file, "campaign_init", OldCampaignStatus);
+    OldTransitionValue(file, "script_players", NetPlCnt);
+    OldTransitionValue(file, "survive_mode", SendCommand(EXT_GETSURVIVEMODE));
+    OldTransitionValue(file, "requested", OldTransitionRequested);
+#ifdef OLD_LEVEL02_SHOP_GUARD
+    OldTransitionValue(file, "shop_blocked_requests", OldLevel02ShopBlockedRequests);
+    OldTransitionValue(file, "shop_action", Action6);
+    OldTransitionValue(file, "shop_legal", bLegalShop);
+    OldTransitionValue(file, "map_type", giMapType);
+#endif
+#ifdef OLD_CAMPAIGN_TRANSITION
+    OldTransitionValue(file, "transition_stage", OldTransitionStage);
+    OldTransitionValue(file, "transition_fault", OldTransitionFault);
+    OldTransitionValue(file, "transition_tact", OldTransitionTactCount);
+    OldTransitionValue(file, "transition_commit_tact", OldTransitionCommitTact);
+    OldTransitionValue(file, "transition_dwell", OldTransitionDwellCalls);
+    OldTransitionValue(file, "transition_requests", OldTransitionRequests);
+    OldTransitionValue(file, "transition_request_tact", OldTransitionRequestTact);
+    OldTransitionValue(file, "transition_host_calls", OldTransitionHostCalls);
+#endif
+    for(int army = 0; army <= 3; army = army + 3)
+    {
+        string prefix = "army_" + itoa(army) + "_";
+        int hero = SendCommandA(army, EXT_GETHEROID);
+        int unit = Flagman(army);
+        OldTransitionValue(file, prefix + "present", unit != 0);
+        OldTransitionValue(file, prefix + "vid", GetVid(unit));
+        OldTransitionValue(file, prefix + "x", GetX(unit));
+        OldTransitionValue(file, prefix + "y", GetY(unit));
+        OldTransitionValue(file, prefix + "z", GetZ(unit));
+        OldTransitionValue(file, prefix + "hp", Action(unit, ACT_GET_HP));
+        OldTransitionValue(file, prefix + "input_move", GetInputAction(6, army));
+        OldTransitionValue(file, prefix + "input_fire", GetInputAction(5, army));
+        OldTransitionValue(file, prefix + "exp", SendCommand(EXT_GETSKILL, hero, RPGHERO_EXP));
+        OldTransitionValue(file, prefix + "kills", SendCommand(EXT_GETSKILL, hero, RPGHERO_KILLS));
+        OldTransitionValue(file, prefix + "money", SendCommand(EXT_GETSKILL, hero, RPGHERO_MONEY));
+        OldTransitionValue(file, prefix + "rank", SendCommand(EXT_GETSKILL, hero, RPGHERO_RANK));
+        for(int skill = 1; skill < RPGHERO_PARAMS_COUNT; skill++)
+        {
+            OldTransitionValue(file, prefix + "skill_" + itoa(skill),
+                SendCommand(EXT_GETSKILL, hero, skill));
+            OldTransitionValue(file, prefix + "base_" + itoa(skill),
+                SendCommand(EXT_GETSKILLBASE, hero, skill));
+        }
+        OldTransitionValue(file, prefix + "ammo", SendCommand(EXT_GETSKILL,
+            hero, RPGHERO_CURAMMOCNT));
+        for(int slot = INV_WEAPON_HAND; slot <= INV_OBJECTS4; slot++)
+        {
+            OldTransitionValue(file, prefix + "slot_" + itoa(slot),
+                SendCommandA(army, EXT_GETITEMID, slot));
+            OldTransitionValue(file, prefix + "count_" + itoa(slot),
+                SendCommandA(army, EXT_GETITEMNUM, slot));
+        }
+    }
+    int quests = SendCommand(EXT_GETQUESTSNUM);
+    OldTransitionValue(file, "quest_count", quests);
+    for(int qi = 0; qi < quests && qi < 64; qi++)
+    {
+        int subs = SendCommand(EXT_GETSUBQUESTSNUM, qi);
+        OldTransitionValue(file, "quest_" + itoa(qi) + "_subcount", subs);
+        for(int si = 0; si < subs && si < 128; si++)
+        {
+            OldTransitionValue(file, "quest_" + itoa(qi) + "_" + itoa(si),
+                SendCommand(EXT_GETQUESTSSTATE, qi, si));
+            OldTransitionValue(file, "accomplished_" + itoa(qi) + "_" + itoa(si),
+                SendCommand(EXT_GetQuestAccomplished, qi, si));
+        }
+    }
+    OldTransitionValue(file, "end_frame", OldTransitionFrame);
+    FWrite(file, "END");
+    FClose(file);
+}
+
+OldTransitionFixtureTact()
+{
+#ifdef OLD_TRANSITION_EARLY_FIXTURE
+    // Distinct diagnostic markers establish that a new character was not
+    // silently created or the two player owners exchanged on map load.
+    if(giCurLevCmpgnReal == 1 && OldTransitionFrame == 100)
+    {
+        SendCommandA(0, EXT_ADDSKILL, RPGHERO_MONEY, 31, false);
+        SendCommandA(3, EXT_ADDSKILL, RPGHERO_MONEY, 47, false);
+        SendCommandA(0, EXT_ADDSKILL, RPGHERO_EXP, 11, false);
+        SendCommandA(3, EXT_ADDSKILL, RPGHERO_EXP, 23, false);
+        SendCommandA(0, EXT_ADDSKILL, RPGHERO_MONSTERDAMAGE, 73, false);
+        SendCommandA(3, EXT_ADDSKILL, RPGHERO_MONSTERDAMAGE, 41, false);
+    }
+    if(giCurLevCmpgnReal == 1 && OldTransitionFrame >= 150 && !OldTransitionRequested)
+    {
+        OldTransitionRequested = 1;
+        SetPlayerControl(0, PLAYERCONTROL_NONE);
+        SetPlayerControl(3, PLAYERCONTROL_NONE);
+        if(NetProperty(NET_IS_HOST))
+            NetProperty(NET_GAME_START, "maps\\Level_02.map");
+    }
+#endif
+}
+#endif

@@ -1,0 +1,285 @@
+// Passive diagnostics appended to the stock old cooperative main().
+// No inputs, RNG calls, unit creation, damage or world-state setters.
+static int OldGameFrame = 0;
+
+OldGameValue(int file, string key, int value)
+{
+    FWrite(file, key + "=" + itoa(value));
+}
+
+OldGameObjectRelations(int file, string key, int unit)
+{
+    int army = -1;
+    int relation0 = -1;
+    int relation3 = -1;
+    if(unit)
+    {
+        army = Action(unit, ACT_GET_ARMY);
+        if(army >= 0 && army < 8)
+        {
+            relation0 = GetRelation(0, army);
+            relation3 = GetRelation(3, army);
+        }
+    }
+    OldGameValue(file, key + "_present", unit != 0);
+    OldGameValue(file, key + "_army", army);
+    OldGameValue(file, key + "_relation_from_0", relation0);
+    OldGameValue(file, key + "_relation_from_3", relation3);
+}
+
+OldGameObject(int file, int index, int vid, int x, int y)
+{
+    int unit = FindNearestSprite(GETSPRITE_VID(vid), x, y, 35);
+    int hp = 0;
+    if(unit) hp = Action(unit, ACT_GET_HP);
+    FWrite(file, "obstacle_" + itoa(index) + "=" + itoa(vid) + "," + itoa(x) + "," + itoa(y)
+        + "," + itoa(hp));
+    OldGameObjectRelations(file, "obstacle_" + itoa(index), unit);
+}
+
+OldGameObserve()
+{
+    OldGameFrame++;
+    int force_sample = 0;
+#ifdef COOP_CAMPAIGN
+    force_sample = Action9 == 1 || OldFinishStage > 0;
+#endif
+    if(OldGameFrame > 1800 || !force_sample && OldGameFrame > 1 && OldGameFrame % 10)
+        return;
+    int file = FCreate("old-game-frame-" + itoa(OldGameFrame) + ".txt");
+    if(!file)
+        return;
+    FWrite(file, "AS2OLDGAME1");
+    OldGameValue(file, "frame", OldGameFrame);
+    FWrite(file, "map=" + GetMapName());
+    OldGameValue(file, "time", GetTime());
+    OldGameValue(file, "players", NetProperty(NET_NO_PLAYERS));
+    OldGameValue(file, "local_army", NetProperty(NET_N_LOCAL_PLAYER));
+    OldGameValue(file, "script_players", NetPlCnt);
+    OldGameValue(file, "game_state", GameState);
+    OldGameValue(file, "survive_mode", SendCommand(EXT_GETSURVIVEMODE));
+    OldGameValue(file, "campaign_level", giCurLevCmpgn);
+#ifdef COOP_CAMPAIGN
+#ifdef OLD_RAT_OBSERVE
+    OldRatObserverWrite(file);
+#endif
+    OldGameValue(file, "connected", NetProperty(NET_IS_CONNECT));
+    OldGameValue(file, "campaign_level_real", giCurLevCmpgnReal);
+    OldGameValue(file, "start_next_map", StartNextMap);
+    FWrite(file, "next_map=" + NextMapName);
+    OldGameValue(file, "finish_stage", OldFinishStage);
+    OldGameValue(file, "finish_fault", OldFinishFault);
+    OldGameValue(file, "finish_requests", OldFinishRequests);
+    OldGameValue(file, "finish_completions", OldFinishCompletions);
+    OldGameValue(file, "finish_request_time", OldFinishRequestTime);
+    OldGameValue(file, "finish_completed_time", OldFinishCompletedTime);
+    OldGameValue(file, "finish_level_before", OldFinishLevelBefore);
+    OldGameValue(file, "finish_level_after", OldFinishLevelAfter);
+    OldGameValue(file, "finish_money_award", OldFinishMoneyAward);
+    OldGameValue(file, "finish_rank_award", OldFinishRankAward);
+    OldGameValue(file, "finish_monster_count", OldFinishMonsterCount);
+    OldGameValue(file, "finish_monsters_killed", OldFinishMonstersKilled);
+    OldGameValue(file, "finish_secret_count", OldFinishSecretCount);
+    OldGameValue(file, "finish_secrets_found", OldFinishSecretsFound);
+    for(int fa = 0; fa <= 3; fa = fa + 3)
+    {
+        OldGameValue(file, "finish_reward_calls_" + itoa(fa), OldFinishRewardCalls[fa]);
+        OldGameValue(file, "finish_money_before_" + itoa(fa), OldFinishMoneyBefore[fa]);
+        OldGameValue(file, "finish_money_after_" + itoa(fa), OldFinishMoneyAfter[fa]);
+        OldGameValue(file, "finish_rank_before_" + itoa(fa), OldFinishRankBefore[fa]);
+        OldGameValue(file, "finish_rank_after_" + itoa(fa), OldFinishRankAfter[fa]);
+        OldGameValue(file, "finish_hero_x_" + itoa(fa), OldFinishHeroX[fa]);
+        OldGameValue(file, "finish_hero_y_" + itoa(fa), OldFinishHeroY[fa]);
+        OldGameValue(file, "finish_hero_z_" + itoa(fa), OldFinishHeroZ[fa]);
+        OldGameValue(file, "finish_hero_hp_" + itoa(fa), OldFinishHeroHP[fa]);
+    }
+    OldGameValue(file, "campaign_init", OldCampaignStatus);
+    OldGameValue(file, "dynamite_plant_army", OldDynamitePlantArmy);
+    OldGameValue(file, "dynamite_owner_army", OldDynamiteOwnerArmy);
+    OldGameValue(file, "dynamite_plant_time", OldDynamitePlantTime);
+    OldGameValue(file, "dynamite_plant_calls", OldDynamitePlantCalls);
+    OldGameValue(file, "dynamite_consume_calls", OldDynamiteConsumeCalls);
+    OldGameValue(file, "dynamite_fault", OldDynamiteFault);
+    // EXT_GETQUESTSSTATE uses insertion indices, not the numeric quest ID.
+    // Build resolves and guards source quest IDs against levels.cfg.
+    // OLD_STORY_QUEST_VALUES
+    OldGameValue(file, "combat_guest_hits", OldCombatGuestHits);
+    OldGameValue(file, "combat_host_hits", OldCombatHostHits);
+    OldGameValue(file, "combat_last_actor_army", OldCombatLastActorArmy);
+    OldGameValue(file, "combat_last_actor_vid", OldCombatLastActorVid);
+    OldGameValue(file, "combat_last_target_army", OldCombatLastTargetArmy);
+    OldGameValue(file, "combat_last_target_x", OldCombatLastTargetX);
+    OldGameValue(file, "combat_last_target_y", OldCombatLastTargetY);
+    OldGameValue(file, "combat_last_target_z", OldCombatLastTargetZ);
+    OldGameValue(file, "combat_last_damage", OldCombatLastDamage);
+    OldGameValue(file, "combat_last_hp_before", OldCombatLastHpBefore);
+    OldGameValue(file, "combat_last_damage_time", OldCombatLastDamageTime);
+    OldGameValue(file, "teleport_active", gCurrentTeleport != 0);
+    OldGameValue(file, "teleport_army", OldTeleportArmy);
+    OldGameValue(file, "roof_5_count", OldRoofCount(5));
+    OldGameValue(file, "roof_6_count", OldRoofCount(6));
+    OldGameValue(file, "roof_5_done", OldRoof5Done);
+    OldGameValue(file, "roof_6_done", OldRoof6Done);
+    OldGameValue(file, "roof_5_army", OldRoof5Army);
+    OldGameValue(file, "roof_6_army", OldRoof6Army);
+    OldGameValue(file, "roof_5_time", OldRoof5Time);
+    OldGameValue(file, "roof_6_time", OldRoof6Time);
+    OldGameValue(file, "bunker_ready", OldBunkerPortalReady);
+    OldGameValue(file, "bunker_fault", OldBunkerFault);
+    OldGameValue(file, "bunker_inflight", OldBunkerInFlight);
+    OldGameValue(file, "bunker_pending_leader", OldBunkerPendingLeader);
+    OldGameValue(file, "bunker_landing_blocked", OldBunkerLandingBlocked);
+    OldGameValue(file, "bunker_landing_blocked_army", OldBunkerLandingBlockedArmy);
+    for(int ba = 0; ba <= 3; ba = ba + 3)
+    {
+        OldGameValue(file, "bunker_entries_" + itoa(ba), OldBunkerEntries[ba]);
+        OldGameValue(file, "bunker_exits_" + itoa(ba), OldBunkerExits[ba]);
+        OldGameValue(file, "bunker_entry_starts_" + itoa(ba), OldBunkerStarts[ba]);
+        OldGameValue(file, "bunker_exit_starts_" + itoa(ba), OldBunkerStarts[8 + ba]);
+        OldGameValue(file, "bunker_entry_started_" + itoa(ba), OldBunkerStartTime[ba]);
+        OldGameValue(file, "bunker_exit_started_" + itoa(ba), OldBunkerStartTime[8 + ba]);
+        OldGameValue(file, "bunker_entry_finished_" + itoa(ba), OldBunkerFinishTime[ba]);
+        OldGameValue(file, "bunker_exit_finished_" + itoa(ba), OldBunkerFinishTime[8 + ba]);
+    }
+    int bunker_door = FindNearestSprite(GETSPRITE_VID(1785), 2133, 6592, 30);
+    OldGameValue(file, "bunker_door_present", bunker_door != 0);
+    if(bunker_door) OldGameValue(file, "bunker_door_animation", GetAnimation(bunker_door));
+    OldGameValue(file, "action_12", Action12);
+    OldGameValue(file, "action_16", Action16);
+    OldGameValue(file, "action_9", Action9);
+    OldGameValue(file, "rat_important_for_sync", GetVidData(1800, VID_IMPORTANT_FOR_SYNC));
+    int keyammobox = FindNearestSprite(GETSPRITE_VID(1225), 1355, 5364, 20);
+    OldGameValue(file, "key_pistol_crate_present", keyammobox != 0);
+    if(keyammobox) OldGameValue(file, "key_pistol_crate_hp", Action(keyammobox, ACT_GET_HP));
+    int keyammodrop = FindNearestSprite(GETSPRITE_VID(1630), 1355, 5364, 50);
+    OldGameValue(file, "key_pistol_drop_present", keyammodrop != 0);
+    int accesskey_id = SendCommandC(EXT_GetIdByName, "Obj_accesskey");
+    OldGameValue(file, "access_key_base_id", accesskey_id);
+    int accesskey = FindNearestSprite(GETSPRITE_VID(1638), 2486, 4266, 30);
+    OldGameValue(file, "access_key_ground_present", accesskey != 0);
+    if(accesskey)
+    {
+        OldGameValue(file, "access_key_ground_animation", GetAnimation(accesskey));
+        OldGameValue(file, "access_key_ground_x", GetX(accesskey));
+        OldGameValue(file, "access_key_ground_y", GetY(accesskey));
+        OldGameValue(file, "access_key_ground_z", GetZ(accesskey));
+    }
+    int security = FindNearestSprite(GETSPRITE_VID(2521), 2890, 6326, 35);
+    OldGameValue(file, "security_computer_present", security != 0);
+    if(security) OldGameValue(file, "security_computer_hp", Action(security, ACT_GET_HP));
+    int elevator = FindNearestSprite(GETSPRITE_VID(1785), 3215, 5823, 20);
+    OldGameValue(file, "elevator_closed_present", elevator != 0);
+    if(elevator) OldGameValue(file, "elevator_closed_animation", GetAnimation(elevator));
+    int liftready = FindNearestSprite(GETSPRITE_VID(1356), 3263, 5918, 20);
+    OldGameValue(file, "elevator_indicator_unlocked", liftready != 0);
+    OldGameObject(file, 0, 1225, 5924, 2703);
+    OldGameObject(file, 1, 1225, 5837, 2679);
+    OldGameObject(file, 2, 1221, 5954, 2643);
+    OldGameObject(file, 3, 1222, 5756, 2784);
+    OldGameObject(file, 4, 1222, 5876, 2710);
+    OldGameObject(file, 5, 1222, 5839, 2757);
+    OldGameObject(file, 6, 401, 5806, 2794);
+    OldGameObject(file, 7, 401, 5810, 2738);
+    int box = FindNearestSprite(GETSPRITE_VID(1225), 4893, 1598, 35);
+    int barrel = FindNearestSprite(GETSPRITE_VID(401), 4865, 1564, 25);
+    int barrelhp = 0;
+    if(barrel) barrelhp = Action(barrel, ACT_GET_HP);
+    OldGameValue(file, "lift_barrel_hp", barrelhp);
+    OldGameObjectRelations(file, "lift_barrel", barrel);
+    int boxhp = 0;
+    if(box) boxhp = Action(box, ACT_GET_HP);
+    OldGameValue(file, "lift_box_0_hp", boxhp);
+    OldGameObjectRelations(file, "lift_box_0", box);
+    box = FindNearestSprite(GETSPRITE_VID(1225), 4845, 1578, 35);
+    boxhp = 0;
+    if(box) boxhp = Action(box, ACT_GET_HP);
+    OldGameValue(file, "lift_box_1_hp", boxhp);
+    OldGameObjectRelations(file, "lift_box_1", box);
+    int blast_gate = FindNearestSprite(GETSPRITE_VID(1517), 6673, 2551, 500);
+    OldGameValue(file, "blast_gate_present", blast_gate != 0);
+    int charge = FindNearestSprite(GETSPRITE_VID(770), 6550, 2600, 150);
+    OldGameValue(file, "charge_present", charge != 0);
+    if(blast_gate)
+        OldGameValue(file, "blast_gate_hp", Action(blast_gate, ACT_GET_HP));
+    int gate = FindNearestSprite(GETSPRITE_VID(661), 5653, 3265, 100);
+    OldGameValue(file, "opening_gate_present", gate != 0);
+    if(gate)
+    {
+        OldGameValue(file, "opening_gate_animation", GetAnimation(gate));
+        OldGameValue(file, "opening_gate_hp", Action(gate, ACT_GET_HP));
+    }
+    int quests = SendCommand(EXT_GETQUESTSNUM);
+    OldGameValue(file, "quest_count", quests);
+    for(int qi = 0; qi < quests && qi < 64; qi++)
+    {
+        int subs = SendCommand(EXT_GETSUBQUESTSNUM, qi);
+        OldGameValue(file, "quest_" + itoa(qi) + "_subcount", subs);
+        for(int si = 0; si < subs && si < 128; si++)
+        {
+            OldGameValue(file, "quest_" + itoa(qi) + "_" + itoa(si), SendCommand(EXT_GETQUESTSSTATE, qi, si));
+            OldGameValue(file, "accomplished_" + itoa(qi) + "_" + itoa(si), SendCommand(EXT_GetQuestAccomplished, qi, si));
+        }
+    }
+#endif
+    int army;
+    for(army = 0; army < 8; army++)
+    {
+        string p = "army_" + itoa(army) + "_";
+        int unit = Flagman(army);
+        OldGameValue(file, p + "present", unit != 0);
+        OldGameValue(file, p + "input_move", GetInputAction(6, army));
+        OldGameValue(file, p + "input_fire", GetInputAction(5, army));
+        OldGameValue(file, p + "input_x", GetInputAction(64, army));
+        OldGameValue(file, p + "input_y", GetInputAction(65, army));
+        OldGameValue(file, p + "input_directions", GetInputAction(1, army)
+            + GetInputAction(2, army) + GetInputAction(3, army) + GetInputAction(4, army));
+        if(unit)
+        {
+            int hero = SendCommandA(army, EXT_GETHEROID);
+            OldGameValue(file, p + "kills", SendCommand(EXT_GETSKILL, hero, RPGHERO_KILLS));
+            OldGameValue(file, p + "exp", SendCommand(EXT_GETSKILL, hero, RPGHERO_EXP));
+            OldGameValue(file, p + "money", SendCommand(EXT_GETSKILL, hero, RPGHERO_MONEY));
+            OldGameValue(file, p + "rank", SendCommand(EXT_GETSKILL, hero, RPGHERO_RANK));
+            OldGameValue(file, p + "dynamite", SendCommandA(army, EXT_IFHASITEM, ITM_DYNAMITE));
+#ifdef COOP_CAMPAIGN
+            int accesskeys = 0;
+            for(int objectslot = INV_OBJECTS1; objectslot <= INV_OBJECTS4; objectslot++)
+            {
+                int objectid = SendCommandA(army, EXT_GETITEMID, objectslot);
+                OldGameValue(file, p + "object_slot_" + itoa(objectslot), objectid);
+                if(accesskey_id && objectid == accesskey_id)
+                    accesskeys++;
+            }
+            OldGameValue(file, p + "access_key", accesskeys);
+#endif
+            for(int slot = INV_WEAPON_1; slot <= INV_WEAPON_5; slot++)
+                OldGameValue(file, p + "slot_" + itoa(slot), SendCommandA(army, EXT_GETITEMID, slot));
+            OldGameValue(file, p + "ammo", SendCommand(EXT_GETSKILL, hero, RPGHERO_CURAMMOCNT));
+            OldGameValue(file, p + "vid", GetVid(unit));
+            OldGameValue(file, p + "x", GetX(unit));
+            OldGameValue(file, p + "y", GetY(unit));
+            OldGameValue(file, p + "z", GetZ(unit));
+            OldGameValue(file, p + "hp", Action(unit, ACT_GET_HP));
+            OldGameValue(file, p + "direction", GetDirection(unit));
+        }
+    }
+    int count = 0;
+    int monster_count = 0;
+    int sprite;
+    for(sprite = FirstUnit(U_UNIT); sprite && count < 2048; sprite = NextUnit())
+    {
+        int vid = GetVid(sprite);
+        if(IsMonsterVid(vid))
+            monster_count++;
+        FWrite(file, "unit_" + itoa(count) + "=" + itoa(vid) + ","
+            + itoa(Action(sprite, ACT_GET_ARMY)) + "," + itoa(GetX(sprite)) + ","
+            + itoa(GetY(sprite)) + "," + itoa(GetZ(sprite)) + ","
+            + itoa(Action(sprite, ACT_GET_HP)) + "," + itoa(GetDirection(sprite)));
+        count++;
+    }
+    OldGameValue(file, "unit_count", count);
+    OldGameValue(file, "monster_count", monster_count);
+    OldGameValue(file, "end_frame", OldGameFrame);
+    FWrite(file, "END");
+    FClose(file);
+}

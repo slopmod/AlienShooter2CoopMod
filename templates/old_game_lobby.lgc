@@ -1,0 +1,359 @@
+// Test-only auto lobby for isolated copies of the ORIGINAL Alien Shooter 2.
+// Keep the old game's COMMON, RPG database and cooperative map unchanged.
+#define NET_GAME_RUN 111
+#include "maps\EXPORT.LGC"
+#include "maps\common.lgc"
+
+#define OLD_GAME_HOST 1
+#define OLD_GAME_SESSION "AS2_OLD_GAME_PROBE"
+#define OLD_GAME_MAP "maps\\cooperative\\cooperative.map"
+
+static int OldGameFrame = 0;
+static int OldGameStage = 0;
+static int OldGameConnected = 0;
+static int OldGamePlayers = 0;
+static int OldGameLocalArmy = -1;
+static int OldGamePrevArmy = -1;
+static int OldGameCreateRet = -999;
+static int OldGameJoinRet = -999;
+static int OldGameSearchCount = 0;
+static int OldGameJoinCount = 0;
+static int OldGameNextSearch = 0;
+static int OldGameNextJoin = 0;
+static int OldGameHeroBase = 0;
+static int OldGameColor = 0;
+static int OldGameHeroSeen[8];
+static int OldGameColorSeen[8];
+static int OldGameSettings[5];
+static string OldGameReady[8];
+static string OldGameAck[8];
+static string OldGameSignature = "";
+static string OldGamePrepare = "";
+static int OldGamePrepareTime = 0;
+static int OldGameStartCalled = 0;
+static int OldGameTimeLimit = 20;
+static int OldGameFragLimit = 100;
+static int OldGameRespawnWeapon = 1;
+
+OldGameRefresh()
+{
+    OldGameConnected = NetProperty(NET_IS_CONNECT);
+    OldGamePlayers = NetProperty(NET_NO_PLAYERS);
+    OldGameLocalArmy = NetProperty(NET_N_LOCAL_PLAYER);
+}
+
+OldGameValue(int file, string name, int value)
+{
+    FWrite(file, name + "=" + itoa(value));
+}
+
+OldGameWriteState()
+{
+    int file = FCreate("old-game-lobby-state.txt");
+    if(!file)
+        return;
+    FWrite(file, "AS2OLDLOBBY1");
+    OldGameValue(file, "frame", OldGameFrame);
+    OldGameValue(file, "role_host", OLD_GAME_HOST);
+    OldGameValue(file, "stage", OldGameStage);
+    OldGameValue(file, "connected", OldGameConnected);
+    OldGameValue(file, "players", OldGamePlayers);
+    OldGameValue(file, "localarmy", OldGameLocalArmy);
+    OldGameValue(file, "local_army", OldGameLocalArmy);
+    OldGameValue(file, "create_ret", OldGameCreateRet);
+    OldGameValue(file, "join_ret", OldGameJoinRet);
+    OldGameValue(file, "hero_base", OldGameHeroBase);
+    OldGameValue(file, "net_player_count", NetPlCnt);
+    OldGameValue(file, "start_called", OldGameStartCalled);
+    FWrite(file, "ready=" + OldGameSignature);
+    FWrite(file, "prepare=" + OldGamePrepare);
+    for(int army = 0; army < 8; army++)
+    {
+        if(NetProperty(NET_IS_PLAYER_EXIST + army))
+        {
+            FWrite(file, "player_" + itoa(army) + "="
+                + itoa(SendCommand(EXT_GetHeroPDId, army)) + ","
+                + itoa(SendCommand(EXT_GetHeroPDClr, army)) + ","
+                + itoa(OldGameHeroSeen[army]) + ","
+                + itoa(OldGameColorSeen[army]));
+        }
+    }
+    OldGameValue(file, "end_frame", OldGameFrame);
+    FWrite(file, "END");
+    FClose(file);
+}
+
+OldGameFind()
+{
+    NetProperty(NET_GAME_FIND_HOSTS, "127.0.0.1");
+    OldGameSearchCount++;
+    OldGameNextSearch = OldGameFrame + 120;
+}
+
+OldGameDiscover()
+{
+    if(NetProperty(NET_NO_GAME) > 0 && OldGameFrame >= OldGameNextJoin)
+    {
+        OldGameJoinCount++;
+        OldGameJoinRet = NetProperty(NET_JOIN_BY_NAME, OLD_GAME_SESSION);
+        OldGameNextJoin = OldGameFrame + 120;
+        if(!OldGameJoinRet)
+        {
+            NetProperty(NET_SET_PLAYER_NAME, "GAME_CLIENT");
+            OldGameStage = 3;
+            return;
+        }
+        if(OldGameJoinCount >= 12)
+            OldGameStage = 92;
+    }
+    if(OldGameFrame >= OldGameNextSearch)
+    {
+        if(OldGameSearchCount < 20)
+            OldGameFind();
+        else
+            OldGameStage = 91;
+    }
+}
+
+OldGameLocalHero()
+{
+    if(OldGameLocalArmy < 0 || OldGameLocalArmy > 7)
+        return;
+    if(OldGamePrevArmy == OldGameLocalArmy)
+        return;
+    // Stock netmenu repeats this when DirectPlay assigns another army.
+    SendCommandA(-1, EXT_SetPlayerMenuType, 1);
+    SendCommand(EXT_SetHeroPDId, OldGameLocalArmy, OldGameHeroBase, true);
+    SendCommand(EXT_SetHeroPDClr, OldGameLocalArmy, OldGameColor);
+    OldGamePrevArmy = OldGameLocalArmy;
+    for(int army = 0; army < 8; army++)
+    {
+        OldGameHeroSeen[army] = 0;
+        OldGameColorSeen[army] = 0;
+        OldGameReady[army] = "";
+        OldGameAck[army] = "";
+    }
+    OldGameHeroSeen[OldGameLocalArmy] = 1;
+    OldGameColorSeen[OldGameLocalArmy] = 1;
+    OldGamePrepare = "";
+}
+
+OldGamePublish()
+{
+    if(OLD_GAME_HOST)
+    {
+        // These are the unmodified stock lobby channels and values.
+        NetSend(1, OldGameTimeLimit);
+        NetSend(2, OldGameFragLimit);
+        NetSend(3, 2); // GameType 1, cooperative.
+        NetSend(4, 1); // First cooperative map.
+        NetSend(7, OldGameRespawnWeapon);
+    }
+    NetSend(5, SendCommand(EXT_GetHeroPDClr, OldGameLocalArmy));
+    NetSend(6, SendCommand(EXT_GetHeroPDId, OldGameLocalArmy));
+}
+
+OldGameReceive()
+{
+    string message;
+    if((message = NetReceive(1)) != "")
+    {
+        OldGameTimeLimit = message;
+        OldGameSettings[0] = 1;
+    }
+    if((message = NetReceive(2)) != "")
+    {
+        OldGameFragLimit = message;
+        OldGameSettings[1] = 1;
+    }
+    if((message = NetReceive(3)) != "")
+    {
+        if(message == "2")
+        {
+            GameType = 1;
+            OldGameSettings[2] = 1;
+        }
+        else
+            OldGameStage = 94;
+    }
+    if((message = NetReceive(4)) != "")
+    {
+        if(message == "1")
+            OldGameSettings[3] = 1;
+        else
+            OldGameStage = 94;
+    }
+    if((message = NetReceive(7)) != "")
+    {
+        OldGameRespawnWeapon = message;
+        OldGameSettings[4] = 1;
+    }
+    for(int army = 0; army < 8; army++)
+    {
+        if((message = NetReceive(5, army)) != "")
+        {
+            SendCommand(EXT_SetHeroPDClr, army, message);
+            OldGameColorSeen[army] = 1;
+        }
+        if((message = NetReceive(6, army)) != "")
+        {
+            SendCommand(EXT_SetHeroPDId, army, message);
+            OldGameHeroSeen[army] = 1;
+        }
+        if((message = NetReceive(16, army)) != "")
+            OldGameReady[army] = message;
+        if((message = NetReceive(17, army)) != "")
+        {
+            if(OLD_GAME_HOST)
+                OldGameAck[army] = message;
+            else
+            if(army == 0)
+                OldGamePrepare = message;
+        }
+    }
+}
+
+OldGameMakeSignature()
+{
+    if(OldGamePlayers != 2 || NetPlCnt != 2)
+        return "";
+    for(int index = 0; index < 5; index++)
+        if(!OldGameSettings[index])
+            return "";
+    string signature = "AS2_OLD_GAME_PROBE/1/1/"
+        + itoa(OldGameTimeLimit) + "/" + itoa(OldGameFragLimit)
+        + "/" + itoa(OldGameRespawnWeapon);
+    for(int army = 0; army < 8; army++)
+    {
+        if(NetProperty(NET_IS_PLAYER_EXIST + army))
+        {
+            int hero = SendCommand(EXT_GetHeroPDId, army);
+            if(!OldGameHeroSeen[army] || !OldGameColorSeen[army] || hero <= 0)
+                return "";
+            signature = signature + "/" + itoa(army) + ":"
+                + itoa(hero) + ":" + itoa(SendCommand(EXT_GetHeroPDClr, army));
+        }
+    }
+    return signature;
+}
+
+OldGameSaveSettings()
+{
+    // The harness must isolate RegPath in each disposable copy's cfg.
+    SetReg(GetDefaultRegPath(), "TimeLimit", OldGameTimeLimit);
+    SetReg(GetDefaultRegPath(), "FragLimit", OldGameFragLimit);
+    SetReg(GetDefaultRegPath(), "RespawnWeapon", OldGameRespawnWeapon);
+}
+
+OldGameBarrier()
+{
+    OldGameSignature = OldGameMakeSignature();
+    if(OldGameSignature == "")
+        return;
+    OldGameStage = 4;
+    if(OldGameFrame % 20 == 0)
+        NetSend(16, OldGameSignature);
+    if(!OLD_GAME_HOST)
+    {
+        if(OldGamePrepare == OldGameSignature)
+        {
+            OldGameSaveSettings();
+            OldGameStage = 6;
+            if(OldGameFrame % 20 == 0)
+                NetSend(17, OldGameSignature);
+        }
+        return;
+    }
+    int army;
+    for(army = 0; army < 8; army++)
+        if(NetProperty(NET_IS_PLAYER_EXIST + army) && army != OldGameLocalArmy)
+            if(OldGameReady[army] != OldGameSignature)
+                return;
+    if(OldGamePrepare != OldGameSignature)
+    {
+        OldGamePrepare = OldGameSignature;
+        OldGamePrepareTime = GetTime();
+        OldGameSaveSettings();
+    }
+    OldGameStage = 5;
+    if(OldGameFrame % 20 == 0)
+        NetSend(17, OldGamePrepare);
+    for(army = 0; army < 8; army++)
+        if(NetProperty(NET_IS_PLAYER_EXIST + army) && army != OldGameLocalArmy)
+            if(OldGameAck[army] != OldGameSignature)
+                return;
+    // The stock menu allows three seconds for final settings before START.
+    if(GetTime() - OldGamePrepareTime < 3000)
+        return;
+    OldGameStartCalled = 1;
+    OldGameStage = 7;
+    OldGameWriteState();
+    MenuRelease();
+    Pause(0);
+    // Void native API. Client waits for its native map-load notification.
+    NetProperty(NET_GAME_START, OLD_GAME_MAP);
+}
+
+main()
+{
+    OldGameFrame++;
+    if(OldGameStage == 0)
+    {
+        SendCommand(EXT_ReloadDB);
+        SetMapTypeEx(MAP_TYPE_PLAYERMENU, "");
+        SendCommandA(-1, EXT_SetPlayerMenuType, 1);
+        SetCursor(CURSOR_NORMAL);
+        SetScrollType(SCROLL_NONE);
+        GetUserName();
+        GameType = 1;
+        // A real stock survival hero, selected by database name, not hardcoded ID.
+        OldGameHeroBase = SendCommandC(EXT_GetIdByName, "CharSurv1");
+        OldGameColor = 1 - OLD_GAME_HOST;
+        NetProperty(NET_NETWORK_ON);
+        OldGameStage = 1;
+        if(OLD_GAME_HOST)
+        {
+            for(int index = 0; index < 5; index++)
+                OldGameSettings[index] = 1;
+            OldGameCreateRet = NetProperty(NET_CREATE, OLD_GAME_SESSION);
+            if(!OldGameCreateRet)
+            {
+                NetProperty(NET_SET_PLAYER_NAME, "GAME_HOST");
+                OldGameStage = 3;
+            }
+            else
+                OldGameStage = 90;
+        }
+        else
+        {
+            OldGameFind();
+            OldGameStage = 2;
+        }
+        if(OldGameHeroBase <= 0)
+            OldGameStage = 95;
+    }
+    OldGameRefresh();
+    if(OldGameStage == 2 && OldGameFrame % 4 == 0)
+        OldGameDiscover();
+    if(OldGameStage >= 3 && OldGameStage <= 6)
+    {
+        CommonTact();
+        OldGameLocalHero();
+        if(OldGameConnected && OldGameLocalArmy >= 0 && OldGameLocalArmy < 8)
+        {
+            if(OldGamePlayers > 2 || (OLD_GAME_HOST && !NetProperty(NET_IS_HOST))
+                || (!OLD_GAME_HOST && NetProperty(NET_IS_HOST)))
+                OldGameStage = 93;
+            else
+            {
+                OldGameReceive();
+                if(OldGameFrame % 20 == 0)
+                    OldGamePublish();
+                if(OldGameStage < 90)
+                    OldGameBarrier();
+            }
+        }
+    }
+    if(OldGameFrame % 4 == 0)
+        OldGameWriteState();
+}

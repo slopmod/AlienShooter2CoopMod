@@ -1,0 +1,238 @@
+// Disposable ORIGINAL-game Level_01 native-coop smoke only.
+// Include after COMMON. Call once after SetMapTypeEx / SetScrollBoxEx(0).
+// The caller must stop GameTact / quests while !OldCampaignReady.
+// No arena respawn, RNG, telefrag, save, shop or map-transition support.
+#ifndef OLD_CAMPAIGN_INIT_H
+#define OLD_CAMPAIGN_INIT_H 1
+
+static int OldCampaignReady = 0;
+// 0 not attempted; 1 ready; 2 initializing; 90..99 guard failures.
+static int OldCampaignStatus = 0;
+static int OldCampaignHost = 0;
+static int OldCampaignGuest = 0;
+static int OldCampaignHostCount = 0;
+static int OldCampaignGuestCount = 0;
+static int OldCampaignSpawnX = 0;
+static int OldCampaignSpawnY = 0;
+static int OldCampaignSpawnZ = 0;
+static int OldCampaignSpawnFound = 0;
+
+OldCampaignValue(int file, string key, int value)
+{
+    FWrite(file, key + "=" + itoa(value));
+}
+
+OldCampaignWriteState()
+{
+    int file = FCreate("old-campaign-init-state.txt");
+    if(!file)
+        return;
+    FWrite(file, "AS2OLDCAMPAIGN1");
+    FWrite(file, "map=" + GetMapName());
+    OldCampaignValue(file, "status", OldCampaignStatus);
+    OldCampaignValue(file, "ready", OldCampaignReady);
+    OldCampaignValue(file, "time", GetTime());
+    OldCampaignValue(file, "connected", NetProperty(NET_IS_CONNECT));
+    OldCampaignValue(file, "is_host", NetProperty(NET_IS_HOST));
+    OldCampaignValue(file, "players", NetProperty(NET_NO_PLAYERS));
+    OldCampaignValue(file, "local_army", NetProperty(NET_N_LOCAL_PLAYER));
+    OldCampaignValue(file, "script_army", giCurArmy);
+    OldCampaignValue(file, "script_players", NetPlCnt);
+    OldCampaignValue(file, "host_candidates", OldCampaignHostCount);
+    OldCampaignValue(file, "guest_candidates", OldCampaignGuestCount);
+    OldCampaignValue(file, "host_unit", OldCampaignHost);
+    OldCampaignValue(file, "guest_unit", OldCampaignGuest);
+    OldCampaignValue(file, "host_flagman", Flagman(0));
+    OldCampaignValue(file, "guest_flagman", Flagman(3));
+    OldCampaignValue(file, "guest_vid", GetFlagmanVid(3));
+    OldCampaignValue(file, "spawn_found", OldCampaignSpawnFound);
+    OldCampaignValue(file, "spawn_x", OldCampaignSpawnX);
+    OldCampaignValue(file, "spawn_y", OldCampaignSpawnY);
+    OldCampaignValue(file, "spawn_z", OldCampaignSpawnZ);
+    for(int army = 0; army < 8; army++)
+        OldCampaignValue(file, "player_" + itoa(army),
+            NetProperty(NET_IS_PLAYER_EXIST + army));
+    FWrite(file, "END");
+    FClose(file);
+}
+
+OldCampaignFail(int status)
+{
+    OldCampaignStatus = status;
+    OldCampaignReady = 0;
+    Pause(1);
+    if(Flagman(0))
+        SendCommandA(0, EXT_DISABLEFLAGMANCONTROL, 1);
+    if(Flagman(3))
+        SendCommandA(3, EXT_DISABLEFLAGMANCONTROL, 1);
+    OldCampaignWriteState();
+    Log("OldCampaignInit guard failed: " + itoa(status));
+    return 0;
+}
+
+OldCampaignRestoreRelations()
+{
+    // Restore the campaign roles overwritten by the NET_GAME_RUN branch.
+    // Army 3 contains both story guards and the guest: both ally with army 0.
+    SetRelation(0, 0, RELATION_FRIEND);
+    SetRelation(3, 3, RELATION_FRIEND);
+    SetRelation(0, 3, RELATION_FRIEND);
+    SetRelation(3, 0, RELATION_FRIEND);
+    SetRelation(1, 0, RELATION_ENEMY);
+    SetRelation(0, 1, RELATION_ENEMY);
+    SetRelation(1, 3, RELATION_ENEMY);
+    SetRelation(3, 1, RELATION_ENEMY);
+    SetRelation(4, 0, RELATION_NEUTRAL);
+    SetRelation(0, 4, RELATION_NEUTRAL);
+    SetRelation(4, 3, RELATION_NEUTRAL);
+    SetRelation(3, 4, RELATION_NEUTRAL);
+    SetRelation(4, 1, RELATION_ENEMY);
+    SetRelation(1, 4, RELATION_ENEMY);
+    SetRelation(5, 0, RELATION_ENEMY);
+    SetRelation(0, 5, RELATION_ENEMY);
+    SetRelation(5, 1, RELATION_ENEMY);
+    SetRelation(1, 5, RELATION_ENEMY);
+    SetRelation(5, 3, RELATION_ENEMY);
+    SetRelation(3, 5, RELATION_ENEMY);
+    SetRelation(5, 4, RELATION_ENEMY);
+    SetRelation(4, 5, RELATION_ENEMY);
+    // Stock campaign behavior: looping-generator monsters mirror army 1.
+    for(int army = 0; army < MAX_PLAYER; army++)
+    {
+        SetRelation(6, army, GetRelation(1, army));
+        SetRelation(army, 6, GetRelation(army, 1));
+    }
+    SetRelation(6, 6, RELATION_FRIEND);
+}
+
+OldCampaignFindGuestPosition(int hero, int vid)
+{
+    int hx = GetX(hero);
+    int hy = GetY(hero);
+    int hz = GetZ(hero);
+    // Fixed nearest-ring order on BOTH peers, independent of local army.
+    // CanPlace returns a blocking sprite; zero is the stock free-space test.
+    for(int radius = 120; radius <= 400; radius = radius + 40)
+        for(int direction = 0; direction < 256; direction = direction + 16)
+        {
+            int x = hx + Cos(direction) * radius / 1024;
+            int y = hy + Sin(direction) * radius / 1024;
+            if(x >= 32 && y >= 32 && x < MapSizeX() - 32 && y < MapSizeY() - 32)
+            {
+                int z = GetGroundZ(x, y);
+                if(z - hz >= -16 && z - hz <= 16)
+                {
+                    // Reject another floor / terrain ridge between the heroes.
+                    int clear = 1;
+                    for(int step = 1; step < 8; step++)
+                    {
+                        int ground = GetGroundZ(hx + (x - hx) * step / 8,
+                            hy + (y - hy) * step / 8);
+                        if(ground - hz < -16 || ground - hz > 16)
+                            clear = 0;
+                    }
+                    if(clear && !IsLineUnderGround(hx, hy, hz + 24, x, y, z + 24))
+                    {
+                        if(!CanPlace(vid, x, y, z))
+                        {
+                            OldCampaignSpawnX = x;
+                            OldCampaignSpawnY = y;
+                            OldCampaignSpawnZ = z;
+                            OldCampaignSpawnFound = 1;
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    return 0;
+}
+
+OldCampaignInit()
+{
+    if(OldCampaignStatus)
+        return OldCampaignReady;
+    OldCampaignStatus = 2;
+#ifndef NET_GAME_RUN
+    return OldCampaignFail(90); // The builder must enable the old native path.
+#endif
+    if(giMapType != MAP_TYPE_LEVEL || gsCampaignName != "Level_01" || gbSurviveMode)
+        return OldCampaignFail(90); // This helper supports only campaign Level_01.
+    if(!NetProperty(NET_IS_CONNECT) || NetProperty(NET_NO_PLAYERS) != 2)
+        return OldCampaignFail(91);
+    int local = NetProperty(NET_N_LOCAL_PLAYER);
+    if(local != 0 && local != 3)
+        return OldCampaignFail(92);
+    if(NetProperty(NET_IS_HOST) && local != 0
+        || !NetProperty(NET_IS_HOST) && local != 3)
+        return OldCampaignFail(92);
+    for(int army = 0; army < 8; army++)
+    {
+        int exists = NetProperty(NET_IS_PLAYER_EXIST + army) != 0;
+        if(exists != (army == 0 || army == 3))
+            return OldCampaignFail(92);
+    }
+
+    // Keep native local identity. Do not call arena NetInit / respawn helpers.
+    gbNetGame = true;
+    InitGame();
+    if(giCurArmy != local || NetPlCnt != 2
+        || NetPlArmy[0] != 0 || NetPlArmy[1] != 3)
+        return OldCampaignFail(93); // CommonTact did not establish the roster.
+
+    int hostVid = GetFlagmanVid(0);
+    int guestVid = GetFlagmanVid(3);
+    if(!GetVidData(guestVid, VID_EXIST)
+        || GetVidData(guestVid, VID_SPRITETYPE) != U_UNIT)
+        return OldCampaignFail(94); // Lobby must prepare the guest RPG VID.
+    for(int unit = FirstUnit(U_UNIT); unit; unit = NextUnit())
+    {
+        if(GetVid(unit) == hostVid)
+        {
+            OldCampaignHost = unit;
+            OldCampaignHostCount++;
+        }
+        if(GetVid(unit) == guestVid)
+            OldCampaignGuestCount++;
+    }
+    if(OldCampaignHostCount != 1 || OldCampaignGuestCount != 0 || Flagman(3))
+        return OldCampaignFail(95); // Never steal an existing hero or NPC.
+    if(Action(OldCampaignHost, ACT_GET_HP) <= 0
+        || Flagman(0) && Flagman(0) != OldCampaignHost)
+        return OldCampaignFail(96);
+
+    Action(OldCampaignHost, ACT_SET_ARMY, 0);
+    SetFlagman(0, OldCampaignHost);
+    RememberRespawn(OldCampaignHost);
+    if(!OldCampaignFindGuestPosition(OldCampaignHost, guestVid))
+        return OldCampaignFail(97); // No safe same-floor position; no telefrag.
+
+    // Mirror stock RespawnFlagman's creation order, without its destroy loop.
+    SendCommandA(3, EXT_RESETHEROHP);
+    OldCampaignGuest = CreateSprite(guestVid, OldCampaignSpawnX,
+        OldCampaignSpawnY, OldCampaignSpawnZ);
+    if(!OldCampaignGuest)
+        return OldCampaignFail(98);
+    Action(OldCampaignGuest, ACT_SET_ARMY, 3);
+    SetFlagman(3, OldCampaignGuest);
+    if(Flagman(0) != OldCampaignHost || Flagman(3) != OldCampaignGuest
+        || Action(OldCampaignGuest, ACT_GET_HP) <= 0)
+        return OldCampaignFail(99);
+
+    OldCampaignRestoreRelations();
+    // These address BOTH armies identically; camera follows the native local
+    // player. Keep the engine's stock control type instead of overriding it.
+    SendCommandA(0, EXT_SELECTBESTWEAPON);
+    SendCommandA(3, EXT_SELECTBESTWEAPON);
+    SendCommandA(0, EXT_DISABLEFLAGMANCONTROL, 0);
+    SendCommandA(3, EXT_DISABLEFLAGMANCONTROL, 0);
+    ShowHelpScreen(false);
+    SetScrollType(SCROLL_TO_FLAGMAN_WITH_DIRECTION);
+    Pause(0);
+    OldCampaignStatus = 1;
+    OldCampaignReady = 1;
+    OldCampaignWriteState();
+    return 1;
+}
+
+#endif
