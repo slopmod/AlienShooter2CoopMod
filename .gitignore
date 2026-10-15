@@ -13,6 +13,7 @@ __pycache__/
 /runtime/
 /saves/
 /campaign-content/
+/src/campaign-content/
 /campaign-installation.json
 /campaign-language.txt
 /campaign-release.json

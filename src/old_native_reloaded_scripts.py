@@ -8,6 +8,8 @@ import hashlib
 from pathlib import Path
 import struct
 
+from old_native_paths import MOD, FROZEN
+
 
 FEATURE = 'old-reloaded-road-scripts-v1'
 STOCK = {
@@ -54,7 +56,7 @@ def extend_vehicle_files(old_root, files, reloaded_root=None):
     from old_native_campaign_progression import once, digest
     from old_native_campaign_vehicles import prepare
     old_root = Path(old_root)
-    reloaded_root = Path(reloaded_root) if reloaded_root is not None else Path(__file__).resolve().parent.parent
+    reloaded_root = Path(reloaded_root) if reloaded_root is not None else (MOD if FROZEN else MOD.parent)
     expected, _ = prepare(old_root)
     for name in ('Maps/util_car.lgc', 'Maps/util_car2.lgc'):
         if files.get(name) != expected[name]:

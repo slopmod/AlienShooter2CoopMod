@@ -29,6 +29,12 @@ To continue, the host selects an entry under **Saved games**; the partner joins 
 
 Full instructions: [English](INSTALL_EN.txt) · [Русский](INSTALL_RU.txt). The launcher can switch the mod language before starting the game; both players must select the same language.
 
+## LAN and remote friends
+
+The mod uses LAN networking. PCs on the same local network can connect directly; enter the host's local IP if discovery fails.
+
+For friends on different networks, use [Hamachi](https://vpn.net/) to join the same virtual LAN, then connect to the host's Hamachi IP. Alternatively, [PortHole](https://porthole.sestudio.org/) can tunnel the game's selected TCP/UDP ports. PortHole is a port tunnel, not a full VPN: the client connects through its local forwarded address (usually `127.0.0.1`), and LAN discovery is not forwarded. Enter that address manually rather than relying on the server list. Both players still need the same mod version, language and campaign content.
+
 ## Implemented
 
 - Two-player adaptations for all **15 original missions**, plus two bundled Reloaded road missions: `1…7 → 7.2 → 7.3 → 8…15`.
@@ -51,24 +57,35 @@ Use **64-bit Windows Python 3.11+** with Tk and **Inno Setup 6.7.3**. From the r
 ```powershell
 python -m pip install --target tools/vendor -r requirements.txt
 python -m pip install --target tools/packaging -r requirements-build.txt
-python -B build_campaign_release.py --reloaded-source "D:\Games\Alien Shooter 2 Reloaded" --compiler "C:\Tools\Inno Setup 6\ISCC.exe"
+python -B scripts/build_campaign_release.py --reloaded-source "D:\Games\Alien Shooter 2 Reloaded" --compiler "C:\Tools\Inno Setup 6\ISCC.exe"
 ```
 
 The build validates the donor resources and writes the standalone launcher, ZIP, installer and SHA-256 files to `dist/`. Only package developers need the supported Reloaded resource donor; release users do not need a separate Reloaded installation. `--vendor` and `--packaging` can point to existing dependency directories. The release manifest records dependency versions, content hashes and the source commit when Git is available.
 
-For a source session, install `requirements.txt`, set `$env:AS2_COOP_RELOADED_DIR` to the supported Reloaded donor path to enable the two additional maps, then run `python -B campaign_launcher.py` (or `Start Campaign.cmd`). Select the supported original game in the launcher. Without additional content, source sessions use the 15 original missions.
+For a source session, install `requirements.txt`, set `$env:AS2_COOP_RELOADED_DIR` to the supported Reloaded donor path to enable the two additional maps, then run `python -B src/campaign_launcher.py` (or `Start Campaign.cmd`). Select the supported original game in the launcher. Without additional content, source sessions use the 15 original missions.
 
 ## Code map
 
+```text
+src/                  Launcher, engine patches and campaign adapters
+  data/               Canonical dialogue timing data
+  locales/            Mod text catalogs
+  templates/          Production game-script templates
+  tools/              Game-map format reader
+scripts/              Release builder, installer and optional launch commands
+tools/                Local dependencies installed during development (ignored)
+Start Campaign.cmd    Source launcher entry point
+```
+
 | Area | Files |
 | --- | --- |
-| Launcher, installation and sessions | `campaign_launcher.py`, `launch_old_native_menu.py`, `old_native_installation.py`, `old_native_runtime*.py`, `old_native_process.py` |
-| Campaign build and mission registry | `old_native_campaign_build.py`, `old_native_campaign_missions.py`, `old_native_campaign_progression.py` |
-| Shared campaign mechanics | `old_native_interaction_registry.py`, `old_native_interaction_schema.py`, `old_native_level*_interactions.py`, `old_native_campaign_portals.py`, `old_native_campaign_revival.py` |
-| Native engine patches and network commands | `old_native_*_patch.py`, `old_native_campaign_command_patch.py` |
-| Saves and transfer | `old_native_checkpoints.py`, `old_native_campaign_checkpoint.py`, `old_native_campaign_browser.py`, `old_native_campaign_retry.py` |
-| Localization and dialogue timing | `old_native_localization.py`, `locales/`, `data/old-russian-dialogue-timing.json` |
-| Scripts and resource formats | `templates/`, `tools/map_format.py`, `old_native_reloaded_*.py` |
-| Release packaging | `build_campaign_release.py`, `scripts/campaign-installer.iss` |
+| Launcher, paths and sessions | `src/campaign_launcher.py`, `src/launch_old_native_menu.py`, `src/old_native_installation.py`, `src/old_native_paths.py`, `src/old_native_runtime*.py`, `src/old_native_process.py` |
+| Campaign build and mission registry | `src/old_native_campaign_build.py`, `src/old_native_campaign_missions.py`, `src/old_native_campaign_progression.py` |
+| Shared campaign mechanics | `src/old_native_interaction_registry.py`, `src/old_native_interaction_schema.py`, `src/old_native_level*_interactions.py`, `src/old_native_campaign_portals.py`, `src/old_native_campaign_revival.py` |
+| Native engine patches and network commands | `src/old_native_*_patch.py`, `src/old_native_campaign_command_patch.py` |
+| Saves and transfer | `src/old_native_checkpoints.py`, `src/old_native_campaign_checkpoint.py`, `src/old_native_campaign_browser.py`, `src/old_native_campaign_retry.py` |
+| Localization and dialogue timing | `src/old_native_localization.py`, `src/locales/`, `src/data/old-russian-dialogue-timing.json` |
+| Scripts and resource formats | `src/templates/`, `src/tools/map_format.py`, `src/old_native_reloaded_*.py` |
+| Release packaging | `scripts/build_campaign_release.py`, `scripts/campaign-installer.iss` |
 
 Native patches are specific to the supported executable and resource hashes. Preserve these checks when extending the mod. Game assets remain the property of their respective rights holders; bundled third-party software notices are provided in each release's `LICENSES` directory.

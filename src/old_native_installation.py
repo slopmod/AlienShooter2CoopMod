@@ -8,10 +8,9 @@ from pathlib import Path
 import sys
 
 from old_native_localization import get_language, tr
+from old_native_paths import BUNDLE, MOD
 
 
-BUNDLE = Path(__file__).resolve().parent
-MOD = Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False) else BUNDLE
 CONFIG = MOD / 'campaign-installation.json'
 OLD_SHA = '5128048a4ac922266f4664c1c00e18cc924b1fd3aafd451081799c8c519e3808'
 VERSION = '0.5.0-preview'

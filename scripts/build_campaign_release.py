@@ -21,6 +21,9 @@ import subprocess
 import sys
 import zipfile
 
+SOURCE = Path(__file__).resolve().parent.parent / 'src'
+sys.path.insert(0, str(SOURCE))
+
 from old_native_installation import MOD, OLD_SHA, PRODUCT, VERSION, build_fingerprint
 
 
@@ -239,32 +242,32 @@ def main() -> int:
         'english_game_executable_supported': False,
         'dialogue_timing_basis': 'canonical-russian-original',
         'dependencies': dependencies, 'source': source_revision(),
-        'templates': {name: sha(MOD / 'templates' / name) for name in TEMPLATES},
+        'templates': {name: sha(SOURCE / 'templates' / name) for name in TEMPLATES},
     }
     manifest_file = resources / 'campaign-release.json'
     json_file(manifest_file, manifest)
     version_file = resources / 'version-info.txt'
     version_resource(version_file)
     environment = os.environ.copy()
-    environment['PYTHONPATH'] = os.pathsep.join((str(PACKAGING), str(VENDOR), str(MOD)))
+    environment['PYTHONPATH'] = os.pathsep.join((str(PACKAGING), str(VENDOR), str(SOURCE)))
     environment['PYTHONHASHSEED'] = '0'
     arguments = [
         sys.executable, '-B', '-m', 'PyInstaller', '--onedir', '--windowed',
         '--name', NAME, '--noupx', '--contents-directory', '_internal',
         '--distpath', str(build_root / 'dist'), '--workpath', str(build_root / 'work'),
-        '--specpath', str(build_root), '--paths', str(VENDOR), '--paths', str(MOD),
+        '--specpath', str(build_root), '--paths', str(VENDOR), '--paths', str(SOURCE),
         '--version-file', str(version_file), '--hidden-import', 'pefile',
         '--hidden-import', 'capstone', '--collect-submodules', 'ordlookup',
         '--collect-submodules', 'capstone',
         '--add-binary', str(VENDOR / 'capstone/lib/capstone.dll') + ';capstone/lib',
         '--add-data', str(manifest_file) + ';.',
         '--add-data', str(content_folder) + ';' + RELATIVE_ROOT.as_posix(),
-        '--add-data', str(MOD / 'data/old-russian-dialogue-timing.json') + ';data',
-        '--add-data', str(MOD / 'locales/native-ui.json') + ';locales',
+        '--add-data', str(SOURCE / 'data/old-russian-dialogue-timing.json') + ';data',
+        '--add-data', str(SOURCE / 'locales/native-ui.json') + ';locales',
     ]
     for name in TEMPLATES:
-        arguments += ['--add-data', str(MOD / 'templates' / name) + ';templates']
-    arguments.append(str(MOD / 'campaign_launcher.py'))
+        arguments += ['--add-data', str(SOURCE / 'templates' / name) + ';templates']
+    arguments.append(str(SOURCE / 'campaign_launcher.py'))
     print('Building the standalone launcher; the game will not be started.', flush=True)
     subprocess.run(arguments, cwd=MOD, env=environment, check=True)
     staged = inside(build_root / 'dist' / NAME, build_root)

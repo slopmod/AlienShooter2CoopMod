@@ -2,8 +2,7 @@
 import hashlib
 import json
 import shutil
-import sys
-from old_native_installation import MOD, BUNDLE, OLD_SHA, source_root
+from old_native_installation import MOD, OLD_SHA, source_root
 
 OLD = source_root()
 ASSETS = ('cursores', 'Images', 'Maps', 'Music', 'Send', 'Speech', 'Text', 'Vid', 'Wav')
@@ -40,7 +39,6 @@ def prepare(role):
     # touches the networking paths. Both ranges contain no PE relocation fixups.
     patches = ((0x4181CD, '0f8c99010000', 'e99a01000090', 'Use CWD saves/logs'),
                (0x426F60, '0f8408020000', 'e93d02000090', 'Tick while hidden'))
-    sys.path.insert(0, str(BUNDLE / 'tools' / 'vendor'))
     import pefile
     pe = pefile.PE(data=original)
     image_base = pe.OPTIONAL_HEADER.ImageBase

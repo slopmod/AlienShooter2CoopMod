@@ -6,14 +6,12 @@ game executable, stock resources or native checkpoint representation.
 from __future__ import annotations
 
 import os
-from pathlib import Path
-import sys
+
+from old_native_paths import MOD
 
 
 LANGUAGES = ('en', 'ru')
 DEFAULT_LANGUAGE = 'en'
-BUNDLE = Path(__file__).resolve().parent
-MOD = Path(sys.executable).resolve().parent if getattr(sys, 'frozen', False) else BUNDLE
 LANGUAGE_FILE = MOD / 'campaign-language.txt'
 
 
